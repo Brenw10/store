@@ -8,7 +8,9 @@ function Store() {
 		<>
 			<Header />
 			<StoreLogo />
-			<ProductGrid />
+			<div className="container">
+				<ProductGrid />
+			</div>
 			<Footer />
 		</>
 	);
