@@ -1,12 +1,12 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import StoreLogo from "../components/StoreLogo";
+import Logo from "../components/Logo";
 
 function About() {
 	return (
 		<>
 			<Header />
-			<StoreLogo />
+			<Logo title="Sobre" description="Quem somos" />
 			<Footer />
 		</>
 	);

@@ -1,13 +1,13 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductGrid from "../components/ProductGrid";
-import StoreLogo from "../components/StoreLogo";
+import Logo from "../components/Logo";
 
 function Store() {
 	return (
 		<>
 			<Header />
-			<StoreLogo />
+			<Logo title="Duo" description="Todos os estilos" />
 			<div className="container">
 				<ProductGrid />
 			</div>
