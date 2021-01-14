@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import '../styles/header.css'
-import cart from '../services/cart';
+import { useCart } from '../contexts/Cart';
 
 function Header() {
-	const [products] = useState(cart.get());
+	const { getQuantity } = useCart();
 
 	return (
 		<header>
 			<Link to='/'>Loja</Link>
 			<Link to='/about'>Sobre</Link>
-			<Link to='/cart'>Carrinho ({products.reduce((prev, value) => prev + value.amount, 0)})</Link>
+			<Link to='/cart'>Carrinho ({getQuantity()})</Link>
 		</header>
 	);
 }
