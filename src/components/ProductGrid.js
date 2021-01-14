@@ -31,7 +31,7 @@ function ProductGrid() {
       </div>
       <div className="col-sm-4">
         <div className="form-group">
-          <input type="text" placeholder="Procurar Produto" className="form-control" />
+          <input type="text" placeholder="Procurar..." className="form-control" />
         </div>
       </div>
       <div className="row">

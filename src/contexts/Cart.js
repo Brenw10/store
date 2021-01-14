@@ -2,12 +2,16 @@ import { createContext, useState, useContext } from "react";
 
 export const CartContext = createContext();
 
+const cart = localStorage.getItem('cart');
+
 export default function CartProvider({ children }) {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(cart ? JSON.parse(cart) : []);
 
   const addProduct = item => {
     const newItem = Object.assign(item, { quantity: 1 });
-    setProducts(products.concat(newItem));
+    const newProducts = products.concat(newItem);
+    setProducts(newProducts);
+    localStorage.setItem('cart', JSON.stringify(newProducts));
   };
 
   const increaseProduct = item => {
@@ -15,6 +19,7 @@ export default function CartProvider({ children }) {
     const newProducts = [...products];
     newProducts[index].quantity++;
     setProducts(newProducts);
+    localStorage.setItem('cart', JSON.stringify(products));
   }
 
   const getProduct = id => {
