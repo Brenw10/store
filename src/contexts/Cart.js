@@ -30,12 +30,23 @@ export default function CartProvider({ children }) {
     return products.reduce((prev, value) => prev + value.quantity, 0);
   }
 
+  const clear = () => {
+    setProducts([]);
+    localStorage.clear('cart');
+  };
+
+  const getTotalPrice = () => {
+    return products.reduce((prev, value) => prev + (value.quantity * value.price), 0);
+  }
+
   const value = {
     products,
     addProduct,
     increaseProduct,
     getProduct,
     getQuantity,
+    clear,
+    getTotalPrice,
   };
 
   return (
