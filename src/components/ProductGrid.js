@@ -1,7 +1,7 @@
 function ProductGrid() {
   return (
     <>
-      <div class="container">
+      <div className="container">
         <div className="row">
           <div className="col-sm-8">
             <div className="py-3">10 Produtos</div>
