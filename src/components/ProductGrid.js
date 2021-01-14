@@ -1,5 +1,3 @@
-import '../styles/product-grid.css';
-
 function ProductGrid() {
   return (
     <>
