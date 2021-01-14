@@ -1,3 +1,8 @@
+const cart = {
+  setItem,
+  get,
+};
+
 function get() {
   const cart = localStorage.getItem('cart');
   return cart ? JSON.parse(cart) : [];
@@ -19,7 +24,4 @@ function setItem(item) {
   }
 }
 
-export default {
-  setItem,
-  get,
-};
+export default cart;

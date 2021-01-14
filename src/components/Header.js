@@ -4,7 +4,7 @@ import '../styles/header.css'
 import cart from '../services/cart';
 
 function Header() {
-	const [products, setProducts] = useState(cart.get());
+	const [products] = useState(cart.get());
 
 	return (
 		<header>
