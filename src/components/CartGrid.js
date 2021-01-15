@@ -14,12 +14,15 @@ function CartGrid() {
       <div>
         <div className="row no-gutters justify-content-center">
           <div className="col-sm-9 p-3">
-            {getQuantity() > 0 && products.map((value, i) => <CartItem key={i} product={value} />)}
             {
-              getQuantity() === 0 &&
-              <div className="p-3 text-center text-muted">
-                Seu carrinho esta vazio
-              </div>
+              getQuantity() > 0
+                ?
+                products.map((value, i) => <CartItem key={i} product={value} />)
+                :
+                <div className="p-3 text-center text-muted">
+                  Seu carrinho está vazio
+                </div>
+
             }
           </div>
           {

@@ -21,6 +21,42 @@ function ProductGrid() {
       image: '/img/product-test.jpg',
       price: 70.00,
     },
+    {
+      id: 4,
+      name: 'Produto 4',
+      image: '/img/product-test.jpg',
+      price: 20.00,
+    },
+    {
+      id: 5,
+      name: 'Produto 5',
+      image: '/img/product-test.jpg',
+      price: 30.00,
+    },
+    {
+      id: 6,
+      name: 'Produto 6',
+      image: '/img/product-test.jpg',
+      price: 50.00,
+    },
+    {
+      id: 7,
+      name: 'Produto 7',
+      image: '/img/product-test.jpg',
+      price: 50.00,
+    },
+    {
+      id: 8,
+      name: 'Produto 8',
+      image: '/img/product-test.jpg',
+      price: 50.00,
+    },
+    {
+      id: 9,
+      name: 'Produto 9',
+      image: '/img/product-test.jpg',
+      price: 50.00,
+    },
   ];
   const [products] = useState(values);
 
