@@ -48,3 +48,13 @@ input.form-control {
   background-color: #e2e6ea;
   border-color: #dae0e5;
 }
+
+.btn-light.active, .btn-light.active:hover {
+  text-decoration: underline;
+}
+
+body .btn-light:focus:not(:hover) {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  box-shadow: none;
+}

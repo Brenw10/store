@@ -4,18 +4,29 @@ function CategorySelector() {
   const [category, setCategory] = useState();
 
   const categories = [
-    "Homens",
-    "Mulheres",
+    "Acessórios",
+    "Camisas",
+    "Calças",
+    "Moletons",
     "Mães",
+    "Casacos",
     "Crianças",
     "Bebês",
   ];
+
+  const onClickCategory = value => {
+    if (value === category) {
+      setCategory();
+    } else {
+      setCategory(value);
+    }
+  }
 
   return (
     <>
       {
         categories.map((value, i) =>
-          <button onClick={() => setCategory(value)}
+          <button onClick={() => onClickCategory(value)}
             key={i} type="button"
             className={`btn btn-light w-100 p-3 ${value === category && "active"}`}>
             {value.toUpperCase()}

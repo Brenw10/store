@@ -1,5 +1,7 @@
 import { useState } from "react";
+import GenderSelector from "./GenderSelector";
 import ProductCard from "./ProductCard";
+import '../styles/product-grid.css';
 
 function ProductGrid() {
   const values = [
@@ -69,6 +71,9 @@ function ProductGrid() {
         <div className="form-group">
           <input type="text" placeholder="Procurar..." className="form-control" />
         </div>
+      </div>
+      <div className="gender-container">
+        <GenderSelector />
       </div>
       <div className="row">
         {
