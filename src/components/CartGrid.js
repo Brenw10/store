@@ -1,4 +1,5 @@
 import { useCart } from '../contexts/Cart';
+import CartItem from './CartItem';
 
 function CartGrid() {
   const {
@@ -13,16 +14,12 @@ function CartGrid() {
       <div>
         <div className="row no-gutters justify-content-center">
           <div className="col-sm-9 p-3">
+            {getQuantity() > 0 && products.map(value => <CartItem product={value} />)}
             {
-              getQuantity() > 0
-                ?
-                <div className="p-3 text-center text-muted">
-                  {JSON.stringify(products)}
-                </div>
-                :
-                <div className="p-3 text-center text-muted">
-                  Seu carrinho esta vazio
-                </div>
+              getQuantity() === 0 &&
+              <div className="p-3 text-center text-muted">
+                Seu carrinho esta vazio
+              </div>
             }
           </div>
           {

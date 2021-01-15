@@ -23,6 +23,13 @@ body h1 {
   color: #212529;
 }
 
+body .btn {
+  font-size: 10px;
+  font-family: "Nunito Sans";
+  font-weight: bold;
+  border-radius: 0;
+}
+
 body .btn-primary {
   color: #fff;
   background-color: #1a1a1a;
@@ -31,10 +38,11 @@ body .btn-primary {
   border-right-color: rgb(26, 26, 26);
   border-bottom-color: rgb(26, 26, 26);
   border-left-color: rgb(26, 26, 26);
-  font-size: 10px;
-  font-family: "Nunito Sans";
-  font-weight: bold;
-  padding: 8px 10px 7px 10px;
+}
+
+body .btn-outline-primary {
+  color: #1a1a1a;
+  border-color: #1a1a1a;
 }
 
 input.form-control {

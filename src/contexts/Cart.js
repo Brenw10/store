@@ -39,6 +39,22 @@ export default function CartProvider({ children }) {
     return products.reduce((prev, value) => prev + (value.quantity * value.price), 0);
   }
 
+  const deleteProduct = product => {
+    const index = products.findIndex(value => value.id === product.id);
+    const newProducts = [...products];
+    newProducts.splice(index, 1);
+    setProducts(newProducts);
+    localStorage.setItem('cart', JSON.stringify(products));
+  };
+
+  const decreaseProduct = product => {
+    const index = products.findIndex(value => value.id === product.id);
+    const newProducts = [...products];
+    newProducts[index].quantity--;
+    setProducts(newProducts);
+    localStorage.setItem('cart', JSON.stringify(products));
+  };
+
   const value = {
     products,
     addProduct,
@@ -47,6 +63,8 @@ export default function CartProvider({ children }) {
     getQuantity,
     clear,
     getTotalPrice,
+    deleteProduct,
+    decreaseProduct,
   };
 
   return (
