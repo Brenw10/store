@@ -8,7 +8,7 @@ function CategorySelector() {
     "Mulheres",
     "Mães",
     "Crianças",
-    "Bebes",
+    "Bebês",
   ];
 
   return (
