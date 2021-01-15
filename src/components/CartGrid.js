@@ -3,7 +3,7 @@ import CartItem from './CartItem';
 
 function CartGrid() {
   const {
-    products,
+    cart,
     getQuantity,
     clear,
     getTotalPrice,
@@ -15,7 +15,7 @@ function CartGrid() {
         {
           getQuantity() > 0
             ?
-            products.map((value, i) => <CartItem key={i} product={value} />)
+            cart.map((value, i) => <CartItem key={i} product={value} />)
             :
             <div className="p-3 text-center text-muted">
               Seu carrinho está vazio

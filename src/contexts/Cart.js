@@ -1,62 +1,30 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useContext, useReducer } from "react";
+import CartReducer, { ACTIONS } from '../reducers/Cart';
+import cartSerice from '../services/cart';
 
 export const CartContext = createContext();
 
-const cart = localStorage.getItem('cart');
-
 export default function CartProvider({ children }) {
-  const [products, setProducts] = useState(cart ? JSON.parse(cart) : []);
+  const [cart, dispatch] = useReducer(CartReducer, cartSerice.getStorage());
 
-  const addProduct = item => {
-    const newItem = Object.assign(item, { quantity: 1 });
-    const newProducts = products.concat(newItem);
-    setProducts(newProducts);
-    localStorage.setItem('cart', JSON.stringify(newProducts));
-  };
+  const addProduct = item => dispatch({ type: ACTIONS.ADD, payload: { item } });
 
-  const increaseProduct = item => {
-    const index = products.findIndex(value => value.id === item.id);
-    const newProducts = [...products];
-    newProducts[index].quantity++;
-    setProducts(newProducts);
-    localStorage.setItem('cart', JSON.stringify(products));
-  }
+  const increaseProduct = item => dispatch({ type: ACTIONS.INCREASE, payload: { item, quantity: item.quantity + 1 } });
 
-  const getProduct = id => {
-    return products.find(value => value.id === id);
-  }
+  const decreaseProduct = item => dispatch({ type: ACTIONS.DECREASE, payload: { item, quantity: item.quantity - 1 } });
 
-  const getQuantity = () => {
-    return products.reduce((prev, value) => prev + value.quantity, 0);
-  }
+  const clear = () => dispatch({ type: ACTIONS.CLEAR });
 
-  const clear = () => {
-    setProducts([]);
-    localStorage.clear('cart');
-  };
+  const deleteProduct = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
 
-  const getTotalPrice = () => {
-    return products.reduce((prev, value) => prev + (value.quantity * value.price), 0);
-  }
+  const getProduct = id => cart.find(value => value.id === id);
 
-  const deleteProduct = product => {
-    const index = products.findIndex(value => value.id === product.id);
-    const newProducts = [...products];
-    newProducts.splice(index, 1);
-    setProducts(newProducts);
-    localStorage.setItem('cart', JSON.stringify(products));
-  };
+  const getQuantity = () => cart.reduce((prev, value) => prev + value.quantity, 0);
 
-  const decreaseProduct = product => {
-    const index = products.findIndex(value => value.id === product.id);
-    const newProducts = [...products];
-    newProducts[index].quantity--;
-    setProducts(newProducts);
-    localStorage.setItem('cart', JSON.stringify(products));
-  };
+  const getTotalPrice = () => cart.reduce((prev, value) => prev + (value.quantity * value.price), 0);
 
   const value = {
-    products,
+    cart,
     addProduct,
     increaseProduct,
     getProduct,
