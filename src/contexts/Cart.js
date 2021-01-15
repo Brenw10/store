@@ -17,26 +17,26 @@ export default function CartProvider({ children }) {
 
   const remove = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
 
-  const getProduct = id => cart.find(value => value.id === id);
+  const get = id => cart.find(value => value.id === id);
 
   const getQuantity = () => cart.reduce((prev, value) => prev + value.quantity, 0);
 
-  const getTotalPrice = () => cart.reduce((prev, value) => prev + (value.quantity * value.price), 0);
-
-  const value = {
-    cart,
-    add,
-    increase,
-    getProduct,
-    getQuantity,
-    clear,
-    getTotalPrice,
-    remove,
-    decrease,
-  };
+  const getTotal = () => cart.reduce((prev, value) => prev + (value.quantity * value.price), 0).toFixed(2);
 
   return (
-    <CartContext.Provider value={value}>{children}</CartContext.Provider>
+    <CartContext.Provider value={
+      {
+        cart,
+        add,
+        increase,
+        get,
+        getQuantity,
+        clear,
+        getTotal,
+        remove,
+        decrease,
+      }
+    }>{children}</CartContext.Provider>
   );
 }
 

@@ -6,7 +6,7 @@ function CartGrid() {
     cart,
     getQuantity,
     clear,
-    getTotalPrice,
+    getTotal,
   } = useCart();
 
   return (
@@ -30,7 +30,7 @@ function CartGrid() {
             <p className="mb-1">Itens Totais</p>
             <h4 className=" mb-3 txt-right">{getQuantity()}</h4>
             <p className="mb-1">Valor Total</p>
-            <h3 className="m-0 txt-right">R$ {getTotalPrice().toFixed(2)}</h3>
+            <h3 className="m-0 txt-right">R$ {getTotal()}</h3>
             <hr className="my-4" />
             <div className="text-center">
               <button type="button" className="btn btn-dark">FINALIZAR COMPRA</button>
