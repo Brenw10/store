@@ -7,15 +7,15 @@ export const CartContext = createContext();
 export default function CartProvider({ children }) {
   const [cart, dispatch] = useReducer(CartReducer, cartSerice.getStorage());
 
-  const addProduct = item => dispatch({ type: ACTIONS.ADD, payload: { item } });
+  const add = item => dispatch({ type: ACTIONS.ADD, payload: { item } });
 
-  const increaseProduct = item => dispatch({ type: ACTIONS.INCREASE, payload: { item, quantity: item.quantity + 1 } });
+  const increase = item => dispatch({ type: ACTIONS.INCREASE, payload: { item, quantity: item.quantity + 1 } });
 
-  const decreaseProduct = item => dispatch({ type: ACTIONS.DECREASE, payload: { item, quantity: item.quantity - 1 } });
+  const decrease = item => dispatch({ type: ACTIONS.DECREASE, payload: { item, quantity: item.quantity - 1 } });
 
   const clear = () => dispatch({ type: ACTIONS.CLEAR });
 
-  const deleteProduct = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
+  const remove = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
 
   const getProduct = id => cart.find(value => value.id === id);
 
@@ -25,14 +25,14 @@ export default function CartProvider({ children }) {
 
   const value = {
     cart,
-    addProduct,
-    increaseProduct,
+    add,
+    increase,
     getProduct,
     getQuantity,
     clear,
     getTotalPrice,
-    deleteProduct,
-    decreaseProduct,
+    remove,
+    decrease,
   };
 
   return (

@@ -2,7 +2,7 @@ import { useCart } from '../contexts/Cart';
 import { TrashIcon, PlusCircleIcon, MinusCircleIcon } from './Icons';
 
 function CartItem(props) {
-  const { increaseProduct, deleteProduct, decreaseProduct } = useCart();
+  const { increase, remove, decrease } = useCart();
 
   return (
     <div className="row no-gutters py-2">
@@ -20,18 +20,18 @@ function CartItem(props) {
         <p className="mb-0">Qtd: {props.product.quantity}</p>
       </div>
       <div className="col-sm-4 p-2 text-right">
-        <button onClick={() => increaseProduct(props.product)}
+        <button onClick={() => increase(props.product)}
           className="btn btn-dark btn-sm mr-2 mb-1">
           <PlusCircleIcon width={"20px"} />
         </button>
         {
           props.product.quantity === 1
             ?
-            <button onClick={() => deleteProduct(props.product)} className="btn btn-danger btn-sm mb-1">
+            <button onClick={() => remove(props.product)} className="btn btn-danger btn-sm mb-1">
               <TrashIcon width={"20px"} />
             </button>
             :
-            <button onClick={() => decreaseProduct(props.product)} className="btn btn-danger btn-sm mb-1">
+            <button onClick={() => decrease(props.product)} className="btn btn-danger btn-sm mb-1">
               <MinusCircleIcon width={"20px"} />
             </button>
         }
