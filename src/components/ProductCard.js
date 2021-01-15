@@ -12,8 +12,8 @@ function ProductCard(props) {
       <div className="text-right">
         {
           getProduct(props.product.id)
-            ? <button className="btn btn-outline-primary btn-sm" onClick={() => increaseProduct(props.product)}>ADICIONAR MAIS</button>
-            : <button className="btn btn-primary btn-sm" onClick={() => addProduct(props.product)}>ADICIONAR NO CARRINHO</button>
+            ? <button className="btn btn-outline-dark btn-sm" onClick={() => increaseProduct(props.product)}>ADICIONAR MAIS</button>
+            : <button className="btn btn-dark btn-sm" onClick={() => addProduct(props.product)}>ADICIONAR NO CARRINHO</button>
         }
       </div>
     </div>

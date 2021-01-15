@@ -21,7 +21,7 @@ function CartItem(props) {
       </div>
       <div className="col-sm-4 p-2 text-right">
         <button onClick={() => increaseProduct(props.product)}
-          className="btn btn-primary btn-sm mr-2 mb-1">
+          className="btn btn-dark btn-sm mr-2 mb-1">
           <PlusCircleIcon width={"20px"} />
         </button>
         {

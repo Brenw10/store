@@ -30,21 +30,6 @@ body .btn {
   border-radius: 0;
 }
 
-body .btn-primary {
-  color: #fff;
-  background-color: #1a1a1a;
-  border-color: #1a1a1a;
-  border-top-color: rgb(26, 26, 26);
-  border-right-color: rgb(26, 26, 26);
-  border-bottom-color: rgb(26, 26, 26);
-  border-left-color: rgb(26, 26, 26);
-}
-
-body .btn-outline-primary {
-  color: #1a1a1a;
-  border-color: #1a1a1a;
-}
-
 input.form-control {
   height: calc(1.5em + 1.5rem);
   padding: .75rem 1.5rem;
@@ -57,4 +42,9 @@ input.form-control {
   border: 0 solid #ced4da;
   border-radius: 0;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.btn-light.active {
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
 }
