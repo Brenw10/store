@@ -63,7 +63,7 @@ function ProductGrid() {
   return (
     <div className="row">
       <div className="col-sm-8">
-        <div className="py-3">10 Produtos</div>
+        <div className="py-3">{products.length} Produtos</div>
       </div>
       <div className="col-sm-4">
         <div className="form-group">
