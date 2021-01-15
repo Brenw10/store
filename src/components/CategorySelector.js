@@ -99,16 +99,16 @@ function CategorySelector() {
     <>
       {
         categories.map((value, i) =>
-          <>
+          <div key={i}>
             <button onClick={() => onClickCategory(value.id)}
-              key={i} type="button"
+              type="button"
               className={`btn btn-light w-100 p-3 ${value.id === category && "active"}`}>
               {value.name.toUpperCase()}
             </button>
-            <div className="card">
+            <div className={`card ${value.subcategories && value.id === category && 'm-2'}`}>
               {value.subcategories && value.id === category && renderSubCategory(value.subcategories)}
             </div>
-          </>
+          </div>
         )
       }
     </>
