@@ -12,7 +12,7 @@ function Store() {
 			<Logo title="Duo" description="Todos os estilos" />
 			<div className="row">
 				<div className="col-md-3">
-					<div className="category-container">
+					<div className="category-container offset-xl-3 col-xl-6 p-0">
 						<CategorySelector />
 					</div>
 				</div>

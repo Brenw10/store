@@ -1,5 +1,5 @@
 .category-container {
-  margin: 60px 25% 0 25%;
+  margin-top: 60px;
   height: calc(100% - 60px);
   background-color: #f8f9fa;
 }
