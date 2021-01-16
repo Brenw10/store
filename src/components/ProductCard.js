@@ -2,7 +2,7 @@ import '../styles/product-card.css';
 import { useCart } from '../contexts/Cart';
 
 function ProductCard(props) {
-  const { add, increase, get } = useCart();
+  const { add, setQuantity, get } = useCart();
 
   return (
     <div className="card card-body">
@@ -12,7 +12,7 @@ function ProductCard(props) {
       <div className="text-right">
         {
           get(props.product.id)
-            ? <button className="btn btn-outline-dark btn-sm" onClick={() => increase(props.product)}>ADICIONAR MAIS</button>
+            ? <button className="btn btn-outline-dark btn-sm" onClick={() => setQuantity(props.product, props.product.quantity + 1)}>ADICIONAR MAIS</button>
             : <button className="btn btn-dark btn-sm" onClick={() => add(props.product)}>ADICIONAR NO CARRINHO</button>
         }
       </div>

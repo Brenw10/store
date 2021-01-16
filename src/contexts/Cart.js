@@ -9,9 +9,7 @@ export default function CartProvider({ children }) {
 
   const add = item => dispatch({ type: ACTIONS.ADD, payload: { item } });
 
-  const increase = item => dispatch({ type: ACTIONS.INCREASE, payload: { item, quantity: item.quantity + 1 } });
-
-  const decrease = item => dispatch({ type: ACTIONS.DECREASE, payload: { item, quantity: item.quantity - 1 } });
+  const setQuantity = (item, quantity) => dispatch({ type: ACTIONS.SET_QUANTITY, payload: { item, quantity } });
 
   const clear = () => dispatch({ type: ACTIONS.CLEAR });
 
@@ -28,13 +26,12 @@ export default function CartProvider({ children }) {
       {
         cart,
         add,
-        increase,
+        setQuantity,
         get,
         getQuantity,
         clear,
         getTotal,
         remove,
-        decrease,
       }
     }>{children}</CartContext.Provider>
   );

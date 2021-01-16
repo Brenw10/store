@@ -3,8 +3,7 @@ import cartSerice from '../services/cart';
 export const ACTIONS = {
   ADD: 'ADD',
   REMOVE: 'REMOVE',
-  INCREASE: 'INCREASE',
-  DECREASE: 'DECREASE',
+  SET_QUANTITY: 'SET_QUANTITY',
   CLEAR: 'CLEAR',
 };
 
@@ -19,13 +18,7 @@ export default function Cart(cart, action) {
       const values = cart.filter((_, i) => i !== index);
       return cartSerice.saveStorage(values);
     }
-    case ACTIONS.INCREASE: {
-      const index = cart.findIndex(value => value.id === action.payload.item.id);
-      const values = [...cart];
-      values[index].quantity = action.payload.quantity;
-      return cartSerice.saveStorage(values);
-    }
-    case ACTIONS.DECREASE: {
+    case ACTIONS.SET_QUANTITY: {
       const index = cart.findIndex(value => value.id === action.payload.item.id);
       const values = [...cart];
       values[index].quantity = action.payload.quantity;
@@ -34,7 +27,8 @@ export default function Cart(cart, action) {
     case ACTIONS.CLEAR: {
       return cartSerice.saveStorage([]);
     }
-    default:
+    default: {
       return cart;
+    }
   }
 }
