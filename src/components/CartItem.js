@@ -13,8 +13,8 @@ function CartItem(props) {
           src={props.product.image} className="img-fluid d-block" />
       </div>
       <div className="col-sm-4 p-2">
-        <h5 className="mb-1">Product Name</h5>
-        <p className="mb-1">Price: R${props.product.price} </p>
+        <h5 className="mb-1">{props.product.name}</h5>
+        <p className="mb-1">Preço: R${props.product.price} </p>
       </div>
       <div className="col-sm-2 p-2 text-center ">
         <p className="mb-0">Qtd: {props.product.quantity}</p>

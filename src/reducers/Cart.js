@@ -12,13 +12,11 @@ export default function Cart(cart, action) {
   switch (action.type) {
     case ACTIONS.ADD: {
       const item = Object.assign(action.payload.item, { quantity: 1 });
-      const values = cart.concat(item);
-      return cartSerice.saveStorage(values);
+      return cartSerice.saveStorage([...cart, item]);
     }
     case ACTIONS.REMOVE: {
       const index = cart.findIndex(value => value.id === action.payload.item.id);
-      const values = [...cart];
-      values.splice(index, 1);
+      const values = cart.filter((_, i) => i !== index);
       return cartSerice.saveStorage(values);
     }
     case ACTIONS.INCREASE: {
