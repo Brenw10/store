@@ -17,10 +17,7 @@ function CartGrid() {
             ?
             cart.map((value, i) => <CartItem key={i} product={value} />)
             :
-            <div className="p-3 text-center text-muted">
-              Seu carrinho está vazio
-                </div>
-
+            <div className="p-3 text-center text-muted">Seu carrinho está vazio</div>
         }
       </div>
       {
