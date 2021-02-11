@@ -1,16 +1,16 @@
-function saveStorage(cart) {
+function save(cart) {
   if (cart) localStorage.setItem('cart', JSON.stringify(cart));
   return cart;
 }
 
-function getStorage() {
+function get() {
   const cart = localStorage.getItem('cart');
   return cart ? JSON.parse(cart) : [];
 }
 
 const service = {
-  saveStorage,
-  getStorage,
+  save,
+  get,
 }
 
 export default service;

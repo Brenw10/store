@@ -1,4 +1,4 @@
-import cartSerice from '../services/cart';
+import cartStore from '../services/cartStore';
 
 export const ACTIONS = {
   ADD: 'ADD',
@@ -11,21 +11,21 @@ export default function Cart(cart, action) {
   switch (action.type) {
     case ACTIONS.ADD: {
       const item = Object.assign(action.payload.item, { quantity: 1 });
-      return cartSerice.saveStorage([...cart, item]);
+      return cartStore.save([...cart, item]);
     }
     case ACTIONS.REMOVE: {
       const index = cart.findIndex(value => value.id === action.payload.item.id);
       const values = cart.filter((_, i) => i !== index);
-      return cartSerice.saveStorage(values);
+      return cartStore.save(values);
     }
     case ACTIONS.SET_QUANTITY: {
       const index = cart.findIndex(value => value.id === action.payload.item.id);
       const values = [...cart];
       values[index].quantity = action.payload.quantity;
-      return cartSerice.saveStorage(values);
+      return cartStore.save(values);
     }
     case ACTIONS.CLEAR: {
-      return cartSerice.saveStorage([]);
+      return cartStore.save([]);
     }
     default: {
       return cart;
