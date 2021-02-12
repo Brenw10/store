@@ -10,7 +10,7 @@ export const ACTIONS = {
 export default function Cart(cart, action) {
   switch (action.type) {
     case ACTIONS.ADD: {
-      const item = { ...action.payload.item, quantity: 1 };
+      const item = Object.assign(action.payload.item, { quantity: 1 });
       return cartStore.save([...cart, item]);
     }
     case ACTIONS.REMOVE: {
