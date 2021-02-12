@@ -7,4 +7,4 @@ COPY . $APP
 
 RUN npm install
 
-CMD ["npm","start"]
+RUN yarn global add serve
