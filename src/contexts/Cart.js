@@ -1,11 +1,11 @@
 import { createContext, useContext, useReducer } from "react";
 import CartReducer, { ACTIONS } from '../reducers/Cart';
-import cartStore from '../services/cartStore';
+import CartStorage from '../services/CartStorage';
 
 export const CartContext = createContext();
 
 export default function CartProvider({ children }) {
-  const [cart, dispatch] = useReducer(CartReducer, cartStore.get());
+  const [cart, dispatch] = useReducer(CartReducer, CartStorage.get());
 
   const add = item => dispatch({ type: ACTIONS.ADD, payload: { item } });
 
