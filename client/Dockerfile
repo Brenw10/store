@@ -9,4 +9,4 @@ RUN npm install
 
 RUN yarn global add serve
 
-RUN ["chmod", "+x", "./entrypoint.sh"]
+RUN chmod +x $APP/entrypoint.sh
