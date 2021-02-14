@@ -44,17 +44,7 @@ input.form-control {
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.btn-light.active {
-  background-color: #e2e6ea;
-  border-color: #dae0e5;
-}
-
-.btn-light.active, .btn-light.active:hover {
-  text-decoration: underline;
-}
-
-body .btn-light:focus:not(:hover) {
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
-  box-shadow: none;
+.row {
+  margin-left: 0 !important;
+  margin-right: 0!important;
 }

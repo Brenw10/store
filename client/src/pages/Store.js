@@ -1,22 +1,22 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductGrid from "../components/ProductGrid";
-import Logo from "../components/Logo";
 import CategorySelector from "../components/CategorySelector";
+import Logo from "../components/Logo";
 import '../styles/store.css';
 
 function Store() {
 	return (
 		<>
 			<Header />
-			<Logo title="Duo" description="Todos os estilos" />
+			<Logo title="Duo" description="O seu shop online!" />
 			<div className="row">
-				<div className="col-md-3">
-					<div className="category-container offset-xl-3 col-xl-6 p-0">
+				<div className="col-lg-2">
+					<div className="category-container">
 						<CategorySelector />
 					</div>
 				</div>
-				<div className="col-md-6">
+				<div className="col-lg-8">
 					<ProductGrid />
 				</div>
 			</div>
