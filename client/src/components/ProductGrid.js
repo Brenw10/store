@@ -60,7 +60,7 @@ function ProductGrid() {
   const [products] = useState(values);
 
   return (
-    <div className="row">
+    <div className="row no-gutters">
       <div className="col-sm-8">
         <div className="py-3">{products.length} Produtos</div>
       </div>
@@ -69,7 +69,7 @@ function ProductGrid() {
           <input type="text" placeholder="Procurar..." className="form-control" />
         </div>
       </div>
-      <div className="row">
+      <div className="row no-gutters">
         {
           products.map((product, i) =>
             <div className="col-sm-4 p-3" key={i}>
