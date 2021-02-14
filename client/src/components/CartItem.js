@@ -9,7 +9,7 @@ function CartItem(props) {
       <div className="col-sm-2 p-2">
         <img
           alt={props.product.name}
-          style={{ margin: "0 auto", maxHeight: "50px" }}
+          style={{ margin: "auto", maxHeight: "50px" }}
           src={props.product.image} className="img-fluid d-block" />
       </div>
       <div className="col-sm-4 p-2">

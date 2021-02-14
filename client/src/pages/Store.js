@@ -10,7 +10,7 @@ function Store() {
 		<>
 			<Header />
 			<Logo title="Duo" description="O seu shop online!" />
-			<div className="row">
+			<div className="row no-gutters">
 				<div className="col-lg-2">
 					<div className="category-container">
 						<CategorySelector />

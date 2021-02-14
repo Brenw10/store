@@ -43,8 +43,3 @@ input.form-control {
   border-radius: 0;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-
-.row {
-  margin-left: 0 !important;
-  margin-right: 0!important;
-}
