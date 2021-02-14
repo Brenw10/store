@@ -11,7 +11,7 @@ function CartGrid() {
 
   return (
     <div className="row no-gutters justify-content-center">
-      <div className="col-sm-9 p-3">
+      <div className="col-lg-9 p-3">
         {
           getQuantity() > 0
             ?
@@ -22,7 +22,7 @@ function CartGrid() {
       </div>
       {
         getQuantity() > 0 &&
-        <div className="col-sm-3 p-3">
+        <div className="col-lg-3 p-3">
           <div className="card card-body">
             <p className="mb-1">Itens Totais</p>
             <h4 className=" mb-3 txt-right">{getQuantity()}</h4>
