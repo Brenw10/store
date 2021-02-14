@@ -60,13 +60,15 @@ function ProductGrid() {
   const [products] = useState(values);
 
   return (
-    <div className="row no-gutters">
-      <div className="col-sm-8">
-        <div className="py-3">{products.length} Produtos</div>
-      </div>
-      <div className="col-sm-4">
-        <div className="form-group">
-          <input type="text" placeholder="Procurar..." className="form-control" />
+    <>
+      <div className="row no-gutters">
+        <div className="col-sm-8">
+          <div className="py-3 ml-3">{products.length} Produtos</div>
+        </div>
+        <div className="col-sm-4">
+          <div className="form-group ml-3 mr-3">
+            <input type="text" placeholder="Procurar..." className="form-control" />
+          </div>
         </div>
       </div>
       <div className="row no-gutters">
@@ -78,7 +80,7 @@ function ProductGrid() {
           )
         }
       </div>
-    </div>
+    </>
   );
 }
 
