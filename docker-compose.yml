@@ -4,7 +4,7 @@ services:
     container_name: store_reactjs
     build: ./client/
     ports:
-     - "${PORT}:${PORT}"
+     - "${CLIENT_PORT}:3000"
     volumes:
       - ./client/:/home/app
       - /home/app/node_modules
