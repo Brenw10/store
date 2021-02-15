@@ -17,7 +17,7 @@ services:
     container_name: store_nodejs
     build: ./server/
     ports:
-     - "${SERVER_PORT}:3000"
+     - "${SERVER_PORT}:${SERVER_PORT}"
     volumes:
       - ./server/:/home/app
       - /home/app/node_modules
