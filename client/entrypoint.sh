@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ "$1" = "dev" ]; then 
-  npm start
+  yarn start
 else
-  npm run build
+  yarn build
   serve -s build -l 3000
 fi;

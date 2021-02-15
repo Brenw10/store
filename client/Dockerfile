@@ -5,6 +5,6 @@ WORKDIR $APP
 
 COPY . $APP
 
-RUN npm install
+RUN yarn install
 
 RUN yarn global add serve
