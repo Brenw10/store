@@ -13,3 +13,31 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     entrypoint: /home/app/entrypoint.sh ${ENV}
+  nodejs:
+    container_name: store_nodejs
+    build: ./server/
+    ports:
+     - "${SERVER_PORT}:3000"
+    volumes:
+      - ./server/:/home/app
+      - /home/app/node_modules
+    env_file:
+     - .env
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    environment:
+      WAIT_HOSTS: mongodb:${MONGO_PORT}
+  mongodb:
+    container_name: store_mongodb
+    image: mongo
+    ports:
+    - "${MONGO_PORT}:27017"
+    volumes:  
+    - './data:/data/db'
+    env_file:
+     - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
