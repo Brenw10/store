@@ -1,5 +1,6 @@
-.category-container {
-  margin: 80px 40px 0 40px;
-  height: calc(100% - 80px);
+.category-container-desktop {
   background-color: #f8f9fa;
+  height: calc(100% - 80px);
+  margin-top: 80px;
+  width: 60%;
 }

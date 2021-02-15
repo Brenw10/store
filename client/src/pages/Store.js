@@ -11,12 +11,15 @@ function Store() {
 			<Header />
 			<Logo title="Duo" description="O seu shop online!" />
 			<div className="row no-gutters">
-				<div className="col-lg-2">
-					<div className="category-container">
+				<div className="col-lg-3 justify-content-center d-none d-lg-flex">
+					<div className="category-container-desktop">
 						<CategorySelector />
 					</div>
 				</div>
-				<div className="col-lg-8">
+				<div className="col-lg-3 d-lg-none">
+					<CategorySelector />
+				</div>
+				<div className="col-lg-6">
 					<ProductGrid />
 				</div>
 			</div>
