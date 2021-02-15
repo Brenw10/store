@@ -28,7 +28,8 @@ services:
     depends_on:
       - mongodb
     environment:
-      WAIT_HOSTS: mongodb:${MONGO_PORT}
+      - WAIT_HOSTS=mongodb:${MONGO_PORT}
+      - CHOKIDAR_USEPOLLING=true
   mongodb:
     container_name: store_mongodb
     image: mongo

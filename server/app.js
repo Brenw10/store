@@ -7,6 +7,6 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use('/example', (_, res) => res.send({ test: true }));
+app.use('/', (_, res) => res.send({ test: true }));
 
 app.listen(port);
