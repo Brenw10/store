@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ "$1" = "dev" ]; then 
-  yarn start
+  PORT=$2 yarn start
 else
   yarn build
-  serve -s build -l 3000
+  serve -s build -l $2
 fi;

@@ -4,7 +4,7 @@ services:
     container_name: store_reactjs
     build: ./client/
     ports:
-      - "${CLIENT_PORT}:3000"
+      - "${CLIENT_PORT}:${CLIENT_PORT}"
     volumes:
       - ./client/:/home/app
       - /home/app/node_modules
@@ -12,7 +12,7 @@ services:
       - .env
     environment:
       - CHOKIDAR_USEPOLLING=true
-    entrypoint: /home/app/entrypoint.sh ${ENV}
+    entrypoint: /home/app/entrypoint.sh ${ENV} ${CLIENT_PORT}
   nodejs:
     container_name: store_nodejs
     build: ./server/
