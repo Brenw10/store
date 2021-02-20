@@ -74,7 +74,7 @@ function ProductGrid() {
       <div className="row no-gutters">
         {
           products.map((product, i) =>
-            <div className="col-sm-4 p-3" key={i}>
+            <div className="col-xl-4 col-sm-6 p-3" key={i}>
               <ProductCard key={i} product={product} />
             </div>
           )
