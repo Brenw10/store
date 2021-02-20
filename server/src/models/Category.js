@@ -7,4 +7,11 @@ const Schema = new mongoose.Schema({
   categories: [{ type: mongoose.Types.ObjectId, ref: Collection }],
 });
 
+function populate(next) {
+  this.populate('categories');
+  next();
+}
+
+Schema.pre('find', populate);
+
 module.exports = mongoose.model(Collection, Schema, Collection);
