@@ -9,6 +9,7 @@ const Schema = new mongoose.Schema({
     name: { type: String, required: true },
     quantity: { type: Number, required: true, min: 0, default: 0 },
   }],
+  categories: [{ type: mongoose.Types.ObjectId, ref: 'Category' }],
 });
 
-module.exports = mongoose.model('store', Schema);
+module.exports = mongoose.model('Product', Schema);
