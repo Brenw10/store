@@ -16,6 +16,20 @@ router.post('/',
       .catch(err => res.status(400).send(err))
 );
 
+router.put('/',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      _id: Joi.string().required(),
+      name: Joi.string().required(),
+      categories: Joi.array().items(Joi.string()),
+    }),
+  }),
+  (req, res) =>
+    CategoryEntity.update(req.body)
+      .then(result => res.send(result))
+      .catch(err => res.status(400).send(err))
+);
+
 router.use(errors());
 
 module.exports = router;
