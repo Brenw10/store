@@ -30,6 +30,13 @@ router.put('/',
       .catch(err => res.status(400).send(err))
 );
 
+router.get('/',
+  (_, res) =>
+    CategoryEntity.getAll()
+      .then(result => res.send(result))
+      .catch(err => res.status(400).send(err))
+);
+
 router.use(errors());
 
 module.exports = router;
