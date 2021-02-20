@@ -1,71 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Category from '../services/Category';
 
 function CategorySelector() {
   const [category, setCategory] = useState();
   const [subCategory, setSubCategory] = useState();
+  const [categories, setCategories] = useState([]);
 
-  const categories = [
-    {
-      id: 1,
-      name: "Acessórios",
-      subcategories: [
-        {
-          id: 1,
-          name: "Brincos",
-        },
-        {
-          id: 2,
-          name: "Colares",
-        },
-        {
-          id: 3,
-          name: "Pulseiras",
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: "Camisas",
-      subcategories: [
-        {
-          id: 1,
-          name: "Quente",
-        },
-        {
-          id: 2,
-          name: "Manga Média",
-        },
-        {
-          id: 3,
-          name: "Regatas",
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Calças"
-    },
-    {
-      id: 4,
-      name: "Moletons"
-    },
-    {
-      id: 5,
-      name: "Mães"
-    },
-    {
-      id: 6,
-      name: "Casacos"
-    },
-    {
-      id: 7,
-      name: "Crianças"
-    },
-    {
-      id: 8,
-      name: "Bebês"
-    },
-  ];
+  useEffect(() => {
+    Category.getAll()
+      .then(({ data }) => setCategories(data));
+  }, []);
 
   const onClickCategory = value => {
     if (value === category) {
@@ -87,9 +31,9 @@ function CategorySelector() {
 
   const renderSubCategory = category => {
     return category.map((value, i) =>
-      <button onClick={() => onClickSubCategory(value.id)}
+      <button onClick={() => onClickSubCategory(value._id)}
         key={i} type="button"
-        className={`btn btn-light w-100 p-3 ${value.id === subCategory && "active"}`}>
+        className={`btn btn-light w-100 p-3 ${value._id === subCategory && "active"}`}>
         {value.name.toUpperCase()}
       </button>
     )
@@ -100,13 +44,13 @@ function CategorySelector() {
       {
         categories.map((value, i) =>
           <div key={i}>
-            <button onClick={() => onClickCategory(value.id)}
+            <button onClick={() => onClickCategory(value._id)}
               type="button"
-              className={`btn btn-light w-100 p-3 ${value.id === category && "active"}`}>
+              className={`btn btn-light w-100 p-3 ${value._id === category && "active"}`}>
               {value.name.toUpperCase()}
             </button>
-            <div className={`card ${value.subcategories && value.id === category && 'm-2'}`}>
-              {value.subcategories && value.id === category && renderSubCategory(value.subcategories)}
+            <div className={`card ${value.categories && value._id === category && 'm-2'}`}>
+              {value.categories && value._id === category && renderSubCategory(value.categories)}
             </div>
           </div>
         )
