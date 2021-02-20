@@ -66,7 +66,7 @@ function ProductGrid() {
           <div className="py-3 ml-3">{products.length} Produtos</div>
         </div>
         <div className="col-sm-4">
-          <div className="form-group ml-3 mr-3">
+          <div className="form-group mx-3 mt-3 mt-lg-0">
             <input type="text" placeholder="Procurar..." className="form-control" />
           </div>
         </div>

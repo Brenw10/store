@@ -19,7 +19,7 @@ function Store() {
 				<div className="col-lg-3 d-lg-none">
 					<CategorySelector />
 				</div>
-				<div className="col-lg-6">
+				<div className="col-xl-6 col-lg-8">
 					<ProductGrid />
 				</div>
 			</div>
