@@ -35,7 +35,7 @@ services:
     container_name: store_mongodb
     image: mongo
     ports:
-      - "${MONGO_PORT}:27017"
+      - "${MONGO_PORT}:${MONGO_PORT}"
     volumes:  
       - './data:/data/db'
     env_file:
@@ -43,3 +43,4 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    command: mongod --port ${MONGO_PORT}
