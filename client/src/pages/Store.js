@@ -4,8 +4,11 @@ import ProductGrid from "../components/ProductGrid";
 import CategorySelector from "../components/CategorySelector";
 import Logo from "../components/Logo";
 import '../styles/store.css';
+import { useState } from "react";
 
 function Store() {
+	const [category, setCategory] = useState();
+
 	return (
 		<>
 			<Header />
@@ -13,14 +16,14 @@ function Store() {
 			<div className="row no-gutters">
 				<div className="col-lg-3 justify-content-center d-none d-lg-flex">
 					<div className="category-container-desktop">
-						<CategorySelector />
+						<CategorySelector setCategory={setCategory} />
 					</div>
 				</div>
 				<div className="col-lg-3 d-lg-none">
-					<CategorySelector />
+					<CategorySelector setCategory={setCategory} />
 				</div>
 				<div className="col-xl-6 col-lg-8">
-					<ProductGrid />
+					<ProductGrid category={category} />
 				</div>
 			</div>
 			<Footer />

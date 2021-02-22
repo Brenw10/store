@@ -8,7 +8,7 @@ function ProductGrid({ category }) {
   useEffect(() => {
     const Promise = category ? Product.getByCategory(category) : Product.getAll();
     Promise.then(({ data }) => setProducts(data));
-  }, []);
+  }, [category]);
 
   return (
     <>

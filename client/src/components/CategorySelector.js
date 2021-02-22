@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Category from '../services/Category';
 
-function CategorySelector() {
+function CategorySelector(props) {
   const [category, setCategory] = useState();
   const [subCategory, setSubCategory] = useState();
   const [categories, setCategories] = useState([]);
@@ -15,8 +15,10 @@ function CategorySelector() {
     if (value === category) {
       setCategory();
       setSubCategory();
+      props.setCategory();
     } else {
       setCategory(value);
+      props.setCategory(value);
       setSubCategory();
     }
   }
@@ -24,8 +26,10 @@ function CategorySelector() {
   const onClickSubCategory = value => {
     if (value === subCategory) {
       setSubCategory();
+      props.setCategory(category);
     } else {
       setSubCategory(value);
+      props.setCategory(value);
     }
   }
 
