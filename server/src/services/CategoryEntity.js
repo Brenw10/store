@@ -1,4 +1,5 @@
 const Category = require('../models/Category');
+const mongoose = require('mongoose');
 
 function create(category) {
   return Category.create(category);
@@ -18,8 +19,26 @@ async function getAll() {
   return Category.find({ _id: { $nin: categories } });
 }
 
+async function getCategoryChildren(category) {
+  return Category.aggregate([
+    {
+      $match: { _id: mongoose.Types.ObjectId(category) },
+    },
+    {
+      $graphLookup: {
+        from: Category.collection.name,
+        startWith: "$categories",
+        connectFromField: "categories",
+        connectToField: "_id",
+        as: "categories",
+      },
+    },
+  ]).then(result => result[0]);
+}
+
 module.exports = {
   create,
   update,
   getAll,
+  getCategoryChildren,
 };
