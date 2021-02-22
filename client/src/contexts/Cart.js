@@ -15,11 +15,11 @@ export default function CartProvider({ children }) {
 
   const remove = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
 
-  const get = id => cart.find(value => value.id === id);
+  const get = _id => cart.find(value => value._id === _id);
 
   const getQuantity = () => cart.reduce((prev, value) => prev + value.quantity, 0);
 
-  const getTotal = () => cart.reduce((prev, value) => prev + (value.quantity * value.price), 0).toFixed(2);
+  const getTotal = () => cart.reduce((prev, value) => prev + (value.quantity * value.price), 0);
 
   return (
     <CartContext.Provider value={

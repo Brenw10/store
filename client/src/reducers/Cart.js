@@ -14,11 +14,11 @@ export default function Cart(cart, action) {
       return CartStorage.save([...cart, item]);
     }
     case ACTIONS.REMOVE: {
-      const values = cart.filter(value => value.id !== action.payload.item.id);
+      const values = cart.filter(value => value._id !== action.payload.item._id);
       return CartStorage.save(values);
     }
     case ACTIONS.SET_QUANTITY: {
-      const index = cart.findIndex(value => value.id === action.payload.item.id);
+      const index = cart.findIndex(value => value._id === action.payload.item._id);
       const values = [...cart];
       values[index].quantity = action.payload.quantity;
       return CartStorage.save(values);

@@ -11,8 +11,8 @@ function ProductCard(props) {
       <h3 className="text-left">R$ {props.product.price.toFixed(2)}</h3>
       <div className="text-right">
         {
-          get(props.product.id)
-            ? <button className="btn btn-outline-dark btn-sm" onClick={() => setQuantity(props.product, props.product.quantity + 1)}>ADICIONAR MAIS</button>
+          get(props.product._id)
+            ? <button className="btn btn-outline-dark btn-sm" onClick={() => setQuantity(props.product, get(props.product._id).quantity + 1)}>ADICIONAR MAIS</button>
             : <button className="btn btn-dark btn-sm" onClick={() => add(props.product)}>ADICIONAR NO CARRINHO</button>
         }
       </div>
