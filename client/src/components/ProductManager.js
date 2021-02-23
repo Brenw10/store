@@ -5,6 +5,7 @@ import 'react-dropdown/style.css';
 import Category from '../services/Category';
 import ArrayUtils from '../services/ArrayUtils';
 import Product from '../services/Product';
+import FileUtils from '../services/FileUtils';
 import ImageUploader from "react-images-upload";
 
 function ProductManager() {
@@ -22,9 +23,10 @@ function ProductManager() {
   }, []);
 
   function create() {
-    Product.create({ name, price, images, category, description })
-      .then(({data}) => console.log(data))
-      .catch(({data}) => console.log(data));
+    const imagesPromise = images.map(value => FileUtils.toBase64(value));
+    return Promise.all(imagesPromise)
+      .then(images => Product.create({ name, price, images, category, description }))
+      .then(({ data }) => console.log(data));
   }
 
   return (
