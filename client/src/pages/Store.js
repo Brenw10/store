@@ -2,12 +2,15 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductGrid from "../components/ProductGrid";
 import CategorySelector from "../components/CategorySelector";
+import ProductManager from "../components/ProductManager";
 import Logo from "../components/Logo";
 import '../styles/store.css';
 import { useState } from "react";
+import Modal from 'react-modal';
 
 function Store() {
 	const [category, setCategory] = useState();
+	const [modal, setModal] = useState();
 
 	return (
 		<>
@@ -27,8 +30,28 @@ function Store() {
 				</div>
 			</div>
 			<Footer />
+			<button type="button" onClick={() => setModal(true)}
+				className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>
+			<Modal isOpen={modal} style={customStyles}>
+				<button type="button"
+					onClick={() => setModal(false)}
+					className="btn position-absolute close-button">x</button>
+				<ProductManager />
+			</Modal>
 		</>
 	);
 }
+
+const customStyles = {
+	content: {
+		width: '70%',
+		height: '70%',
+		left: 0,
+		right: 0,
+		top: 0,
+		bottom: 0,
+		margin: 'auto',
+	},
+};
 
 export default Store;

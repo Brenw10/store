@@ -4,3 +4,17 @@
   margin-top: 80px;
   width: 60%;
 }
+
+body .float-right-button {
+  width: 45px;
+  height: 45px;
+  right: 0;
+  bottom: 0;
+  font-size: 18px;
+}
+
+body .close-button {
+  right: 0;
+  top: 0;
+  font-size: 18px;
+}
