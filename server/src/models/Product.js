@@ -10,7 +10,7 @@ const Schema = new mongoose.Schema({
   category: { type: mongoose.Types.ObjectId, ref: 'Category' },
   sizes: [{
     name: { type: String, required: true },
-    quantity: { type: Number, required: true, min: 0, default: 0 },
+    quantity: { type: Number, required: true, min: 0, default: 0, validate: { validator: Number.isInteger } },
   }],
 });
 
