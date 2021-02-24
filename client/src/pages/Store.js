@@ -15,7 +15,7 @@ function Store() {
 	return (
 		<>
 			<Header />
-			<Logo title="Duo" description="O seu shop online!" />
+			<Logo title="Store" description="Você precisa, nós vendemos" />
 			<div className="row no-gutters">
 				<div className="col-lg-3 justify-content-center d-none d-lg-flex">
 					<div className="category-container-desktop">
