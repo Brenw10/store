@@ -1,6 +1,7 @@
 const express = require('express');
 const { celebrate, Joi, errors, Segments } = require('celebrate');
 const ProductEntity = require('../services/ProductEntity');
+const File = require('../services/File');
 
 const router = express.Router();
 
@@ -11,6 +12,7 @@ router.post('/',
       price: Joi.number().required(),
       description: Joi.string().required(),
       category: Joi.string().required(),
+      images: Joi.array().required().items(Joi.string().required()),
       sizes: Joi.array().items({
         name: Joi.string(),
         quantity: Joi.number(),
@@ -18,7 +20,8 @@ router.post('/',
     }),
   }),
   (req, res) =>
-    ProductEntity.create(req.body)
+    Promise.all(req.body.images.map(image => File.saveImage(image)))
+      .then(images => ProductEntity.create({ ...req.body, images }))
       .then(result => res.send(result))
       .catch(err => res.status(400).send(err))
 );
