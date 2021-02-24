@@ -45,6 +45,19 @@ router.get('/category/:category',
       .catch(err => res.status(400).send(err))
 )
 
+
+router.get('/:_id',
+  celebrate({
+    [Segments.PARAMS]: Joi.object({
+      _id: Joi.string().required(),
+    }),
+  }),
+  (req, res) =>
+    ProductEntity.getById(req.params._id)
+      .then(result => res.send(result))
+      .catch(err => res.status(400).send(err))
+)
+
 router.use(errors());
 
 module.exports = router;

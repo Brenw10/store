@@ -19,8 +19,13 @@ async function getByCategory(category) {
   });
 }
 
+function getById(_id) {
+  return Product.find({ _id });
+}
+
 module.exports = {
   create,
   getAll,
   getByCategory,
+  getById,
 };
