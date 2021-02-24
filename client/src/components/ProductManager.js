@@ -45,14 +45,14 @@ function ProductManager({ onClose }) {
   }
 
   function renderSizes() {
-    return sizes.map((_, i) =>
+    return sizes.map((value, i) =>
       <tr key={i}>
         <td>
-          <input type="text" className="form-control"
+          <input type="text" className="form-control" value={value.name || ''}
             onChange={event => onChangeSizes('name', event.target.value, i)} />
         </td>
         <td>
-          <input type="number" className="form-control" min="0" step="1"
+          <input type="number" className="form-control" min="0" step="1" value={value.quantity || 0}
             onChange={event => onChangeSizes('quantity', event.target.value, i)} />
         </td>
         <td className="text-center">
