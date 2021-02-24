@@ -3,7 +3,7 @@ import { ENDPOINT } from '../constants/Api';
 
 function ProductCard({ product, onClick }) {
   return (
-    <div className="card shadow-sm" onClick={() => onClick(product)}>
+    <div className="card shadow-sm pointer" onClick={() => onClick(product)}>
       <div className="card-body text-center">
         <img className="img-fluid" src={ENDPOINT + product.images[0]} alt={product.name} />
         <p>{product.name}</p>
