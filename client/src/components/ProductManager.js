@@ -7,6 +7,7 @@ import ArrayUtils from '../services/ArrayUtils';
 import Product from '../services/Product';
 import FileUtils from '../services/FileUtils';
 import ImageUploader from "react-images-upload";
+import { TrashIcon, PlusCircleIcon } from './Icons';
 
 function ProductManager({ onClose }) {
   const [name, setName] = useState();
@@ -15,6 +16,7 @@ function ProductManager({ onClose }) {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
   const [description, setDescription] = useState();
+  const [sizes, setSizes] = useState([{}]);
 
   useEffect(() => {
     Category.getAll()
@@ -25,8 +27,41 @@ function ProductManager({ onClose }) {
   function create() {
     const imagesPromise = images.map(value => FileUtils.toBase64(value));
     return Promise.all(imagesPromise)
-      .then(images => Product.create({ name, price, images, category, description }))
+      .then(images => Product.create({ name, price, images, category, description, sizes }))
       .then(() => onClose());
+  }
+
+  function onChangeSizes(field, value, index) {
+    const items = [...sizes];
+    const item = { ...sizes[index], [field]: value };
+    items[index] = item;
+    setSizes(items);
+  }
+
+  function onRemoveSize(index) {
+    const items = [...sizes];
+    items.splice(index, 1);
+    setSizes(items);
+  }
+
+  function renderSizes() {
+    return sizes.map((_, i) =>
+      <tr key={i}>
+        <td>
+          <input type="text" className="form-control"
+            onChange={event => onChangeSizes('name', event.target.value, i)} />
+        </td>
+        <td>
+          <input type="number" className="form-control" min="0" step="1"
+            onChange={event => onChangeSizes('quantity', event.target.value, i)} />
+        </td>
+        <td className="text-center">
+          <button className="btn btn-danger btn-sm" onClick={() => onRemoveSize(i)}>
+            <TrashIcon width={"20px"} />
+          </button>
+        </td>
+      </tr>
+    );
   }
 
   return (
@@ -55,7 +90,7 @@ function ProductManager({ onClose }) {
             <div className="input-group-prepend">
               <span className="input-group-text">Preço</span>
             </div>
-            <input type="number" className="form-control"
+            <input type="number" className="form-control" min="0"
               onChange={event => setPrice(event.target.value)} />
           </div>
         </div>
@@ -65,6 +100,30 @@ function ProductManager({ onClose }) {
             onChange={({ value }) => setCategory(value)}
             value={category} placeholder="Selecione uma Categoria"
           />
+        </div>
+        <div className="col-12">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title text-center">Tipos</h5>
+              <table className="table table-borderless">
+                <thead>
+                  <tr>
+                    <th className="text-center">Nome</th>
+                    <th className="text-center">Quantidade</th>
+                    <th className="text-center">Deletar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {renderSizes()}
+                </tbody>
+              </table>
+              <div className="text-center">
+                <button className="btn btn-dark btn-sm" onClick={() => setSizes([...sizes, {}])}>
+                  <PlusCircleIcon width={"20px"} />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="col-12 p-3">
           <div className="text-center mb-3"><h3>Descrição</h3></div>
