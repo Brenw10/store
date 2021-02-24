@@ -33,7 +33,7 @@ router.get('/',
       .catch(err => res.status(400).send(err))
 )
 
-router.get('/:category',
+router.get('/category/:category',
   celebrate({
     [Segments.PARAMS]: Joi.object({
       category: Joi.string().required(),

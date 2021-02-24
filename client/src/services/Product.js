@@ -5,7 +5,7 @@ function getAll() {
 }
 
 function getByCategory(category) {
-  return Endpoint.get(`product/${category}`);
+  return Endpoint.get(`product/category/${category}`);
 }
 
 function create(product) {
