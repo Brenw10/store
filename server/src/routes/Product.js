@@ -13,7 +13,7 @@ router.post('/',
       description: Joi.string().required(),
       category: Joi.string().required(),
       images: Joi.array().required().items(Joi.string().required()),
-      sizes: Joi.array().items({
+      sizes: Joi.array().min(1).required().items({
         name: Joi.string().required(),
         quantity: Joi.number().required(),
       }),
