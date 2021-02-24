@@ -12,10 +12,15 @@ function create(product) {
   return Endpoint.post('product', product);
 }
 
+function getById(_id) {
+  return Endpoint.get(`product/${_id}`);
+}
+
 const service = {
   getAll,
   getByCategory,
   create,
+  getById,
 }
 
 export default service;
