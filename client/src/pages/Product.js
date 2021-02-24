@@ -29,7 +29,7 @@ function Product() {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-4">
+          <div className="col-lg-4">
             <div className="d-flex flex-column align-items-center text-center">
               <SimpleImageSlider
                 width={300} height={300}
@@ -40,7 +40,7 @@ function Product() {
               <div>{renderSizes()}</div>
             </div>
           </div>
-          <div className="col-8">
+          <div className="col-lg-8">
             <Editor readOnly={true} value={product.description} defaultValue={product.description} />
           </div>
         </div>
