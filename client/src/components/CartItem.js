@@ -1,5 +1,6 @@
 import { useCart } from '../contexts/Cart';
 import { TrashIcon, PlusCircleIcon, MinusCircleIcon } from './Icons';
+import { ENDPOINT } from '../constants/Api';
 
 function CartItem(props) {
   const { setQuantity, remove, get } = useCart();
@@ -10,7 +11,7 @@ function CartItem(props) {
         <img
           alt={props.product.name}
           style={{ margin: "auto", maxHeight: "50px" }}
-          src='/img/product-test.jpg' className="img-fluid d-block" />
+          src={ENDPOINT + props.product.images[0]} className="img-fluid d-block" />
       </div>
       <div className="col-sm-4 p-2">
         <h5 className="mb-1">{props.product.name}</h5>

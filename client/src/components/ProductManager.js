@@ -8,7 +8,7 @@ import Product from '../services/Product';
 import FileUtils from '../services/FileUtils';
 import ImageUploader from "react-images-upload";
 
-function ProductManager() {
+function ProductManager({ onClose }) {
   const [name, setName] = useState();
   const [price, setPrice] = useState();
   const [images, setImages] = useState([]);
@@ -26,7 +26,7 @@ function ProductManager() {
     const imagesPromise = images.map(value => FileUtils.toBase64(value));
     return Promise.all(imagesPromise)
       .then(images => Product.create({ name, price, images, category, description }))
-      .then(({ data }) => console.log(data));
+      .then(() => onClose());
   }
 
   return (
@@ -70,7 +70,10 @@ function ProductManager() {
           <div className="text-center mb-3"><h3>Descrição</h3></div>
           <Editor placeholder="Detalhes do produto" onChange={value => setDescription(value())} />
         </div>
-        <div className="col-12 text-right">
+        <div className="col-6">
+          <button className="btn btn-outline-dark btn-lg" onClick={() => onClose()}>Cancelar</button>
+        </div>
+        <div className="col-6 text-right">
           <button className="btn btn-dark btn-lg" onClick={() => create()}>Criar Produto</button>
         </div>
       </div>

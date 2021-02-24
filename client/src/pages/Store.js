@@ -36,7 +36,7 @@ function Store() {
 				<button type="button"
 					onClick={() => setModal(false)}
 					className="btn position-absolute close-button">x</button>
-				<ProductManager />
+				<ProductManager onClose={() => setModal(false)} />
 			</Modal>
 		</>
 	);
