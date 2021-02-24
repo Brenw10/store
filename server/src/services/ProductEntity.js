@@ -20,7 +20,7 @@ async function getByCategory(category) {
 }
 
 function getById(_id) {
-  return Product.find({ _id });
+  return Product.findOne({ _id });
 }
 
 module.exports = {
