@@ -7,10 +7,12 @@ import Logo from "../components/Logo";
 import '../styles/store.css';
 import { useState } from "react";
 import Modal from 'react-modal';
+import { useHistory } from "react-router-dom";
 
 function Store() {
 	const [category, setCategory] = useState();
 	const [modal, setModal] = useState();
+	const history = useHistory();
 
 	return (
 		<>
@@ -18,15 +20,15 @@ function Store() {
 			<Logo title="Store" description="Você precisa, nós vendemos" />
 			<div className="row no-gutters">
 				<div className="col-lg-3 justify-content-center d-none d-lg-flex">
-					<div className="category-container-desktop">
+					<div className="category-container-desktop shadow-sm">
 						<CategorySelector setCategory={setCategory} />
 					</div>
 				</div>
-				<div className="col-lg-3 d-lg-none">
+				<div className="col-lg-3 d-lg-none shadow-sm">
 					<CategorySelector setCategory={setCategory} />
 				</div>
 				<div className="col-xl-6 col-lg-8">
-					<ProductGrid category={category} />
+					<ProductGrid category={category} onClickProduct={product => history.push('/product/' + product._id)} />
 				</div>
 			</div>
 			<Footer />
