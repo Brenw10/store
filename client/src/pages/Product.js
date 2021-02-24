@@ -36,7 +36,8 @@ function Product() {
                 showNavs={true} useGPURender={true}
                 images={product.images.map(image => ({ url: ENDPOINT + image }))}
               />
-              <div className="mt-3">{renderSizes()}</div>
+              <label className="text-muted mt-3">Opções:</label>
+              <div>{renderSizes()}</div>
             </div>
           </div>
           <div className="col-8">
