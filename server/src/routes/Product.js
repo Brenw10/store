@@ -15,7 +15,7 @@ router.post('/',
       images: Joi.array().required().items(Joi.string().required()),
       sizes: Joi.array().min(1).required().items({
         name: Joi.string().required(),
-        quantity: Joi.number().integer().required(),
+        quantity: Joi.number().integer().min(0).required(),
       }),
     }),
   }),
