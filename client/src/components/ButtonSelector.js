@@ -10,7 +10,7 @@ function ButtonSelector({ values, field, onSelect }) {
 
   return values.map((value, i) =>
     <button key={i}
-      className={`btn btn-outline-dark m-2 ${value === selected ? 'active' : ''}`}
+      className={`btn btn-outline-dark m-2 ${value === selected && 'active'}`}
       onClick={() => onClick(value)}>
       {value[field]}
     </button>
