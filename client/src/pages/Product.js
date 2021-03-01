@@ -8,11 +8,13 @@ import Editor from "rich-markdown-editor";
 import { ENDPOINT } from '../constants/Api';
 import SimpleImageSlider from "react-simple-image-slider";
 import ButtonSelector from '../components/ButtonSelector';
+import { useCart } from '../contexts/Cart';
 
 function Product() {
   const [product, setProduct] = useState();
-  const [size, setSize] = useState();
+  const [selectedSize, setSelectedSize] = useState();
   const { id } = useParams();
+  const { get, add, setSize } = useCart();
 
   useEffect(() => {
     ProductService
@@ -21,8 +23,27 @@ function Product() {
   }, [id]);
 
   function renderSizes() {
-    const values = product.sizes.filter(value => value.quantity);
-    return <ButtonSelector values={values} field='name' onSelect={value => setSize(value)} />
+    const currentProduct = get(product._id) || product;
+    const values = currentProduct.sizes.filter(value => value.quantity);
+    return <ButtonSelector values={values} field='name' onSelect={value => setSelectedSize(value)} />
+  }
+
+  function setProductSize(buy) {
+    if (!get(product._id)) add(product);
+    setSize(product, { ...selectedSize, buy });
+    setSelectedSize();
+  }
+
+  function renderCartButtons() {
+    return (
+      selectedSize && selectedSize.buy
+        ?
+        <button className='btn btn-danger mt-3 w-100' disabled={!selectedSize}
+          onClick={() => setProductSize(0)}>REMOVER NO CARRINHO</button>
+        :
+        <button className='btn btn-dark mt-3 w-100' disabled={!selectedSize}
+          onClick={() => setProductSize(1)}>ADICIONAR NO CARRINHO</button>
+    )
   }
 
   function renderProduct() {
@@ -38,13 +59,14 @@ function Product() {
               />
               <label className="text-muted mt-3">Opções:</label>
               <div>{renderSizes()}</div>
+              {renderCartButtons()}
             </div>
           </div>
           <div className="col-lg-8">
             <Editor readOnly={true} value={product.description} defaultValue={product.description} />
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 

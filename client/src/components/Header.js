@@ -4,13 +4,13 @@ import '../styles/header.css'
 import { useCart } from '../contexts/Cart';
 
 function Header() {
-	const { getQuantity } = useCart();
+	const { cart } = useCart();
 
 	return (
 		<header>
 			<Link to='/'>Loja</Link>
 			<Link to='/about'>Sobre</Link>
-			<Link to='/cart'>Carrinho ({getQuantity()})</Link>
+			<Link to='/cart'>Carrinho ({cart.length})</Link>
 		</header>
 	);
 }

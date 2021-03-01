@@ -3,25 +3,25 @@ import CartStorage from '../services/CartStorage';
 export const ACTIONS = {
   ADD: 'ADD',
   REMOVE: 'REMOVE',
-  SET_QUANTITY: 'SET_QUANTITY',
   CLEAR: 'CLEAR',
+  SET_SIZE: 'SET_SIZE',
 };
 
 export default function Cart(cart, action) {
   switch (action.type) {
     case ACTIONS.ADD: {
-      const item = Object.assign(action.payload.item, { quantity: 1 });
-      return CartStorage.save([...cart, item]);
+      return CartStorage.save([...cart, action.payload.item]);
     }
     case ACTIONS.REMOVE: {
       const values = cart.filter(value => value._id !== action.payload.item._id);
       return CartStorage.save(values);
     }
-    case ACTIONS.SET_QUANTITY: {
-      const index = cart.findIndex(value => value._id === action.payload.item._id);
-      const values = [...cart];
-      values[index].quantity = action.payload.quantity;
-      return CartStorage.save(values);
+    case ACTIONS.SET_SIZE: {
+      const values = cart.filter(value => value._id !== action.payload.item._id);
+      const item = cart.find(value => value._id === action.payload.item._id);
+      const index = item.sizes.findIndex(value => value._id === action.payload.size._id);
+      item.sizes[index] = action.payload.size;
+      return CartStorage.save([...values, item]);
     }
     case ACTIONS.CLEAR: {
       return CartStorage.save([]);
