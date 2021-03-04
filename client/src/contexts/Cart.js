@@ -11,11 +11,15 @@ export default function CartProvider({ children }) {
 
   const clear = () => dispatch({ type: ACTIONS.CLEAR });
 
-  const remove = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
-
   const setSize = (item, size) => dispatch({ type: ACTIONS.SET_SIZE, payload: { item, size } });
 
   const get = _id => cart.find(value => value._id === _id);
+
+  const getBuy = _id => get(_id).sizes.reduce((sum, value) => sum + ~~value.buy, 0);
+
+  const getAllBuy = () => cart.reduce((sum, value) => sum + getBuy(value._id), 0);
+
+  const getTotal = () => cart.reduce((sum, value) => sum + getBuy(value._id) * value.price, 0);
 
   return (
     <CartContext.Provider value={
@@ -24,8 +28,9 @@ export default function CartProvider({ children }) {
         add,
         get,
         clear,
-        remove,
         setSize,
+        getAllBuy,
+        getTotal,
       }
     }>{children}</CartContext.Provider>
   );
