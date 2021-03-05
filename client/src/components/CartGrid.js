@@ -15,7 +15,7 @@ function CartGrid() {
     <div className="row no-gutters justify-content-center">
       <div className="col-lg-9 p-3">
         {
-          cart.length > 0
+          getAllBuy() > 0
             ?
             renderItems()
             :
@@ -23,7 +23,7 @@ function CartGrid() {
         }
       </div>
       {
-        cart.length > 0 &&
+        getAllBuy() > 0 &&
         <div className="col-lg-3 p-3">
           <div className="card card-body">
             <p className="mb-1">Itens Totais</p>
