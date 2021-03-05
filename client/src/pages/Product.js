@@ -28,7 +28,7 @@ function Product() {
     return <ButtonSelector values={values} field='name' onSelect={value => setSelectedSize(value)} />
   }
 
-  function setProductSize(buy) {
+  function setProductBuy(buy) {
     if (!get(product._id)) add(product);
     setSize(product, selectedSize, buy);
     setSelectedSize();
@@ -39,10 +39,10 @@ function Product() {
       selectedSize && selectedSize.buy
         ?
         <button className='btn btn-danger mt-3 w-100' disabled={!selectedSize}
-          onClick={() => setProductSize(0)}>REMOVER NO CARRINHO</button>
+          onClick={() => setProductBuy(0)}>REMOVER NO CARRINHO</button>
         :
         <button className='btn btn-dark mt-3 w-100' disabled={!selectedSize}
-          onClick={() => setProductSize(1)}>ADICIONAR NO CARRINHO</button>
+          onClick={() => setProductBuy(1)}>ADICIONAR NO CARRINHO</button>
     )
   }
 
