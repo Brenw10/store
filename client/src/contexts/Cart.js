@@ -13,6 +13,8 @@ export default function CartProvider({ children }) {
 
   const setSize = (item, size, buy) => dispatch({ type: ACTIONS.SET_SIZE, payload: { item, size: { ...size, buy } } });
 
+  const remove = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
+
   const get = _id => cart.find(value => value._id === _id);
 
   const getBuy = _id => get(_id).sizes.reduce((sum, value) => sum + ~~value.buy, 0);
@@ -31,6 +33,8 @@ export default function CartProvider({ children }) {
         setSize,
         getAllBuy,
         getTotal,
+        getBuy,
+        remove,
       }
     }>{children}</CartContext.Provider>
   );
