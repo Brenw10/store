@@ -17,11 +17,11 @@ export default function Cart(cart, action) {
       return CartStorage.save(values);
     }
     case ACTIONS.SET_SIZE: {
-      const values = cart.filter(value => value._id !== action.payload.item._id);
-      const item = cart.find(value => value._id === action.payload.item._id);
-      const index = item.sizes.findIndex(value => value._id === action.payload.size._id);
-      item.sizes[index] = action.payload.size;
-      return CartStorage.save([...values, item]);
+      const newCart = [...cart];
+      const itemIndex = cart.findIndex(value => value._id === action.payload.item._id);
+      const sizeIndex = cart[itemIndex].sizes.findIndex(value => value._id === action.payload.size._id);
+      newCart[itemIndex].sizes[sizeIndex] = action.payload.size;
+      return CartStorage.save(newCart);
     }
     case ACTIONS.CLEAR: {
       return CartStorage.save([]);
