@@ -30,7 +30,7 @@ function Product() {
 
   function setProductSize(buy) {
     if (!get(product._id)) add(product);
-    setSize(product, { ...selectedSize, buy });
+    setSize(product, selectedSize, buy);
     setSelectedSize();
   }
 

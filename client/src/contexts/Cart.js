@@ -11,7 +11,7 @@ export default function CartProvider({ children }) {
 
   const clear = () => dispatch({ type: ACTIONS.CLEAR });
 
-  const setSize = (item, size) => dispatch({ type: ACTIONS.SET_SIZE, payload: { item, size } });
+  const setSize = (item, size, buy) => dispatch({ type: ACTIONS.SET_SIZE, payload: { item, size: { ...size, buy } } });
 
   const get = _id => cart.find(value => value._id === _id);
 
