@@ -3,13 +3,13 @@ import CartItem from './CartItem';
 import { Link } from "react-router-dom";
 import GoogleLogin from 'react-google-login';
 import { GOOGLE_AUTH } from '../constants/Api';
+import User from '../services/User';
 
 function CartGrid() {
   const { cart, clear, getAllBuy, getTotal } = useCart();
 
-
-  function onSignIn({ tokenId, profileObj }) {
-    console.log(tokenId, profileObj)
+  function onSignIn({ tokenId }) {
+    User.create(tokenId);
   }
 
   function renderItems() {
