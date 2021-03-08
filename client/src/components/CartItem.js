@@ -15,7 +15,7 @@ function CartItem({ product, size }) {
       </div>
       <div className="col-sm-4 p-2">
         <h5 className="mb-1">{product.name} - {size.name}</h5>
-        <p className="mb-1">Preço: R${product.price.toFixed(2)} </p>
+        <p className="mb-1">Preço: R${Number(product.price).toLocaleString()} </p>
       </div>
       <div className="col-sm-2 p-2 text-center ">
         <p className="mb-0">Qtd: {size.buy}</p>

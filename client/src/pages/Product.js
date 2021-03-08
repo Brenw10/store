@@ -59,6 +59,7 @@ function Product() {
               />
               <label className="text-muted mt-3">Opções:</label>
               <div>{renderSizes()}</div>
+              <h3 className="mt-2">R$ {Number(product.price).toLocaleString()}</h3>
               {renderCartButtons()}
             </div>
           </div>
