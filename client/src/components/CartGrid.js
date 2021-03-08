@@ -25,7 +25,7 @@ function CartGrid() {
       {
         getAllBuy() > 0 &&
         <div className="col-lg-3 p-3">
-          <div className="card card-body">
+          <div className="card card-body shadow-sm">
             <p className="mb-1">Itens Totais</p>
             <h4 className=" mb-3 txt-right">{getAllBuy()}</h4>
             <p className="mb-1">Valor Total</p>
