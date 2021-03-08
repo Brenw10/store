@@ -1,9 +1,9 @@
 import '../styles/product-card.css';
 import { ENDPOINT } from '../constants/Api';
 
-function ProductCard({ product, onClick }) {
+function ProductCard({ product }) {
   return (
-    <div className="card shadow-sm pointer h-100" onClick={() => onClick(product)}>
+    <div className="card shadow-sm h-100">
       <div className="card-body d-flex flex-column justify-content-end text-center">
         <img className="img-fluid mb-3" width="100%" src={ENDPOINT + product.images[0]} alt={product.name} />
         <p>{product.name}</p>

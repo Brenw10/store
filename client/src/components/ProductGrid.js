@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Product from '../services/Product';
+import { Link } from "react-router-dom";
 
-function ProductGrid({ category, onClickProduct }) {
+function ProductGrid({ category }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -26,7 +27,9 @@ function ProductGrid({ category, onClickProduct }) {
         {
           products.map(product =>
             <div className="col-xl-4 col-sm-6 p-3" key={product._id}>
-              <ProductCard product={product} onClick={value => onClickProduct(value)} />
+              <Link to={`/product/${product._id}`} className="text-decoration-none">
+                <ProductCard product={product} />
+              </Link>
             </div>
           )
         }
