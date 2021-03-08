@@ -1,11 +1,11 @@
 const express = require('express');
-const auth = require('../services/auth')
+const Auth = require('../services/Auth')
 
 const router = express.Router();
 
 router.use(async function (req, res, next) {
   try {
-    const user = await auth.getUser(req.headers.authorization);
+    const user = await Auth.getUser(req.headers.authorization);
     if (user.sub) {
       res.locals.user = user;
       next();
