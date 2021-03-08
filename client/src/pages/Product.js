@@ -51,7 +51,7 @@ function Product() {
       <div className="container">
         <div className="row">
           <div className="col-lg-4">
-            <div className="d-flex flex-column align-items-center text-center">
+            <div className="d-flex flex-column align-items-center text-center mb-3">
               <SimpleImageSlider
                 width={300} height={300}
                 showNavs={true} useGPURender={true}
