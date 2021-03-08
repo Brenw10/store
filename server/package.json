@@ -8,6 +8,7 @@
   "author": "Brendon Mota",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "celebrate": "^13.0.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const Product = require('./src/routes/Product');
 const Category = require('./src/routes/Category');
+const User = require('./src/routes/User');
 
 require('dotenv').config();
 
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json({ limit: '5mb' }));
 app.use('/public', express.static(__dirname + '/public'));
 
+app.use('/user', User);
 app.use('/product', Product);
 app.use('/category', Category);
 
