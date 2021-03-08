@@ -9,8 +9,8 @@ function CartGrid() {
     return cart.map(item => item.sizes
       .filter(size => size.buy)
       .map(size =>
-        <Link to={`/product/${item._id}`} className="text-decoration-none">
-          <CartItem key={size._id} product={item} size={size} />
+        <Link to={`/product/${item._id}`} className="text-decoration-none" key={size._id}>
+          <CartItem product={item} size={size} />
         </Link>
       )
     );
