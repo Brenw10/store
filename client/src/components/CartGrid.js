@@ -1,5 +1,6 @@
 import { useCart } from '../contexts/Cart';
 import CartItem from './CartItem';
+import { Link } from "react-router-dom";
 
 function CartGrid() {
   const { cart, clear, getAllBuy, getTotal } = useCart();
@@ -7,7 +8,11 @@ function CartGrid() {
   function renderItems() {
     return cart.map(item => item.sizes
       .filter(size => size.buy)
-      .map(size => <CartItem key={size._id} product={item} size={size} />)
+      .map(size =>
+        <Link to={`/product/${item._id}`} className="text-decoration-none">
+          <CartItem key={size._id} product={item} size={size} />
+        </Link>
+      )
     );
   }
 
