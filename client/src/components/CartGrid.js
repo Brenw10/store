@@ -1,25 +1,26 @@
 import { useCart } from '../contexts/Cart';
 import CartItem from './CartItem';
-import { Link } from "react-router-dom";
 import GoogleLogin from 'react-google-login';
 import { GOOGLE_AUTH } from '../constants/Api';
 import User from '../services/User';
+import { useHistory } from "react-router-dom";
 
 function CartGrid() {
   const { cart, clear, getAllBuy, getTotal } = useCart();
+  const history = useHistory();
 
   function onSignIn({ tokenId }) {
     User.create(tokenId);
   }
 
+  function onClickProduct({ _id }) {
+    history.push('/product/' + _id);
+  }
+
   function renderItems() {
     return cart.map(item => item.sizes
       .filter(size => size.buy)
-      .map(size =>
-        <Link to={`/product/${item._id}`} className="text-decoration-none" key={size._id}>
-          <CartItem product={item} size={size} />
-        </Link>
-      )
+      .map(size => <CartItem key={size._id} product={item} size={size} onClick={onClickProduct} />)
     );
   }
 
