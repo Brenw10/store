@@ -1,10 +1,23 @@
 const express = require('express');
 const Auth = require('../routes/Auth');
+const User = require('../services/User');
 
 const router = express.Router();
 
 router.use(Auth);
 
-router.post('/', (_, res) => res.send(res.locals.user));
+router.post('/',
+  (_, res) =>
+    User.create(
+      res.locals.user.sub,
+      {
+        ...res.locals.user,
+        image: res.locals.user.picture,
+        authId: res.locals.user.sub
+      }
+    )
+      .then(result => res.send(result))
+      .catch(err => res.status(400).send(err))
+);
 
 module.exports = router;
