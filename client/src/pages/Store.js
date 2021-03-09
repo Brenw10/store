@@ -7,10 +7,18 @@ import Logo from "../components/Logo";
 import '../styles/store.css';
 import { useState } from "react";
 import Modal from 'react-modal';
+import GoogleLogin from 'react-google-login';
+import { GOOGLE_AUTH } from '../constants/Api';
+import { useUser } from '../contexts/User';
 
 function Store() {
 	const [category, setCategory] = useState();
 	const [modal, setModal] = useState();
+	const { user, setUser } = useUser();
+
+	function onSignIn({ tokenId, profileObj }) {
+		setUser({ ...profileObj, ...tokenId });
+	}
 
 	return (
 		<>
@@ -30,8 +38,16 @@ function Store() {
 				</div>
 			</div>
 			<Footer />
-			<button type="button" onClick={() => setModal(true)}
-				className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>
+			{
+				!user &&
+				<GoogleLogin className="position-fixed float-right-button" onSuccess={onSignIn}
+					clientId={GOOGLE_AUTH} buttonText="" cookiePolicy={'single_host_origin'} />
+			}
+			{
+				user &&
+				<button type="button" onClick={() => setModal(true)}
+					className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>
+			}
 			<Modal isOpen={modal} style={customStyles}>
 				<button type="button"
 					onClick={() => setModal(false)}
