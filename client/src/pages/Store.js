@@ -10,14 +10,25 @@ import Modal from 'react-modal';
 import GoogleLogin from 'react-google-login';
 import { GOOGLE_AUTH } from '../constants/Api';
 import { useUser } from '../contexts/User';
+import User from '../services/User';
 
 function Store() {
 	const [category, setCategory] = useState();
 	const [modal, setModal] = useState();
 	const { user, setUser } = useUser();
 
-	function onSignIn({ tokenId, profileObj }) {
-		setUser({ ...profileObj, tokenId });
+	function onSignIn({ tokenId }) {
+		User
+			.get(tokenId)
+			.then(({ data }) => setUser(data));
+	}
+
+	function renderAdmin() {
+		if (!user.isAdmin) return;
+		return (
+			<button type="button" onClick={() => setModal(true)}
+				className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>
+		);
 	}
 
 	return (
@@ -39,14 +50,12 @@ function Store() {
 			</div>
 			<Footer />
 			{
-				!user &&
-				<GoogleLogin className="position-fixed float-right-button" onSuccess={onSignIn}
-					clientId={GOOGLE_AUTH} buttonText="" cookiePolicy={'single_host_origin'} />
-			}
-			{
-				user &&
-				<button type="button" onClick={() => setModal(true)}
-					className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>
+				!user
+					?
+					<GoogleLogin className="position-fixed float-right-button" onSuccess={onSignIn}
+						clientId={GOOGLE_AUTH} buttonText="" cookiePolicy={'single_host_origin'} />
+					:
+					renderAdmin()
 			}
 			<Modal isOpen={modal} style={customStyles}>
 				<button type="button"
