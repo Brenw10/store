@@ -20,7 +20,7 @@ function Store() {
 	function onSignIn({ tokenId }) {
 		User
 			.get(tokenId)
-			.then(({ data }) => setUser(data));
+			.then(({ data }) => setUser({ ...data, tokenId }));
 	}
 
 	function renderAdmin() {
