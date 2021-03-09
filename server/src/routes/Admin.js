@@ -4,7 +4,7 @@ const User = require('../services/User');
 const router = express.Router();
 
 router.use(async function (req, res, next) {
-  const isAdmin = await User.isAdmin(req.locals.user.sub);
+  const isAdmin = await User.isAdmin(res.locals.user.sub);
   if (isAdmin) {
     next();
   } else {
