@@ -1,10 +1,12 @@
 const express = require('express');
 const { celebrate, Joi, errors, Segments } = require('celebrate');
 const CategoryEntity = require('../services/CategoryEntity');
+const Auth = require('../routes/Auth');
 
 const router = express.Router();
 
 router.post('/',
+  Auth,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
@@ -17,6 +19,7 @@ router.post('/',
 );
 
 router.put('/',
+  Auth,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       _id: Joi.string().required(),
