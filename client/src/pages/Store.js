@@ -17,7 +17,7 @@ function Store() {
 	const { user, setUser } = useUser();
 
 	function onSignIn({ tokenId, profileObj }) {
-		setUser({ ...profileObj, ...tokenId });
+		setUser({ ...profileObj, tokenId });
 	}
 
 	return (

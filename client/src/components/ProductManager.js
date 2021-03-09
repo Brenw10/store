@@ -8,6 +8,7 @@ import Product from '../services/Product';
 import FileUtils from '../services/FileUtils';
 import ImageUploader from "react-images-upload";
 import { TrashIcon, PlusCircleIcon } from './Icons';
+import { useUser } from '../contexts/User';
 
 function ProductManager({ onClose }) {
   const [name, setName] = useState();
@@ -17,6 +18,7 @@ function ProductManager({ onClose }) {
   const [category, setCategory] = useState();
   const [description, setDescription] = useState();
   const [sizes, setSizes] = useState([{}]);
+  const { user } = useUser();
 
   useEffect(() => {
     Category.getAll()
@@ -27,7 +29,7 @@ function ProductManager({ onClose }) {
   function create() {
     const imagesPromise = images.map(value => FileUtils.toBase64(value));
     return Promise.all(imagesPromise)
-      .then(images => Product.create({ name, price, images, category, description, sizes }))
+      .then(images => Product.create(user.tokenId, { name, price, images, category, description, sizes }))
       .then(() => onClose());
   }
 

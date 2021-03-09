@@ -8,8 +8,8 @@ function getByCategory(category) {
   return Endpoint.get(`product/category/${category}`);
 }
 
-function create(product) {
-  return Endpoint.post('product', product);
+function create(token, product) {
+  return Endpoint.post('product', product, { headers: { Authorization: token } });
 }
 
 function getById(_id) {
