@@ -3,11 +3,11 @@ const { celebrate, Joi, errors, Segments } = require('celebrate');
 const ProductEntity = require('../services/ProductEntity');
 const File = require('../services/File');
 const Auth = require('../routes/Auth');
+const Admin = require('../routes/Admin');
 
 const router = express.Router();
 
-router.post('/',
-  Auth,
+router.post('/', Auth, Admin,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
