@@ -20,4 +20,11 @@ router.post('/',
       .catch(err => res.status(400).send(err))
 );
 
+router.get('/',
+  (_, res) =>
+    User.getByAuthId(res.locals.user.sub)
+      .then(result => res.send(result))
+      .catch(err => res.status(400).send(err))
+)
+
 module.exports = router;
