@@ -2,10 +2,12 @@ const express = require('express');
 const { celebrate, Joi, errors, Segments } = require('celebrate');
 const ProductEntity = require('../services/ProductEntity');
 const File = require('../services/File');
+const Auth = require('../routes/Auth');
 
 const router = express.Router();
 
 router.post('/',
+  Auth,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
