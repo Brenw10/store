@@ -1,4 +1,4 @@
-const mongoose = require('../config/Database');
+const mongoose = require('../core/Database');
 
 const Collection = 'User';
 

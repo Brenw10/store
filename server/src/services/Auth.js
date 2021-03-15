@@ -1,5 +1,5 @@
 const axios = require('axios');
-const GOOGLE_API = require('../config/Auth');
+const GOOGLE_API = require('../core/Auth');
 
 function getUser(id_token) {
   return axios
