@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import LoadingBar from 'react-top-loading-bar';
-import Endpoint from '../config/Endpoint';
+import Endpoint from '../core/Endpoint';
 
 function Loader() {
   const ref = useRef();

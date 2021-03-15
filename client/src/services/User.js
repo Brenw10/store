@@ -1,4 +1,4 @@
-import Endpoint from '../config/Endpoint';
+import Endpoint from '../core/Endpoint';
 
 function create(token) {
   return Endpoint.post('user', null, { headers: { Authorization: token } });
