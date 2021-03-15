@@ -33,7 +33,7 @@ async function getByCategory(category) {
 }
 
 function getById(_id) {
-  return Product.findOne({ _id });
+  return Product.findOne({ _id }).populate('category');
 }
 
 module.exports = {
