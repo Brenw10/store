@@ -2,8 +2,8 @@ const express = require('express');
 const { celebrate, Joi, errors, Segments } = require('celebrate');
 const ProductEntity = require('../services/ProductEntity');
 const File = require('../services/File');
-const Auth = require('../routes/Auth');
-const Admin = require('../routes/Admin');
+const Auth = require('../middleware/Auth');
+const Admin = require('../middleware/Admin');
 
 const router = express.Router();
 
