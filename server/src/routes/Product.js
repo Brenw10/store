@@ -28,14 +28,14 @@ router.post('/', Auth, Admin,
       .catch(err => res.status(400).send(err))
 );
 
-router.get('/',
+router.get('/', Auth, Admin,
   (_, res) =>
     ProductEntity.getAll()
       .then(result => res.send(result))
       .catch(err => res.status(400).send(err))
-)
+);
 
-router.get('/category/:category',
+router.get('/category/:category', Auth, Admin,
   celebrate({
     [Segments.PARAMS]: Joi.object({
       category: Joi.string().required(),
@@ -45,8 +45,7 @@ router.get('/category/:category',
     ProductEntity.getByCategory(req.params.category)
       .then(result => res.send(result))
       .catch(err => res.status(400).send(err))
-)
-
+);
 
 router.get('/:_id',
   celebrate({
@@ -58,7 +57,7 @@ router.get('/:_id',
     ProductEntity.getById(req.params._id)
       .then(result => res.send(result))
       .catch(err => res.status(400).send(err))
-)
+);
 
 router.use(errors());
 
