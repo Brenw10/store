@@ -1,11 +1,19 @@
 import Endpoint from '../core/Endpoint';
 
-function getAll() {
-  return Endpoint.get('product');
+function getAllForSale() {
+  return Endpoint.get('product/sale');
 }
 
-function getByCategory(category) {
-  return Endpoint.get(`product/category/${category}`);
+function getAll(token) {
+  return Endpoint.get('product', { headers: { Authorization: token } });
+}
+
+function getForSaleByCategory(category) {
+  return Endpoint.get(`product/sale/category/${category}`);
+}
+
+function getAllByCategory(token, category) {
+  return Endpoint.get(`product/category/${category}`, { headers: { Authorization: token } });
 }
 
 function create(token, product) {
@@ -17,10 +25,12 @@ function getById(_id) {
 }
 
 const service = {
-  getAll,
-  getByCategory,
+  getAllForSale,
+  getForSaleByCategory,
   create,
   getById,
+  getAll,
+  getAllByCategory,
 }
 
 export default service;

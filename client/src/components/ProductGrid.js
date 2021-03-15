@@ -2,14 +2,29 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Product from '../services/Product';
 import { Link } from "react-router-dom";
+import { useUser } from '../contexts/User';
 
 function ProductGrid({ category }) {
   const [products, setProducts] = useState([]);
+  const { user } = useUser();
 
   useEffect(() => {
-    const Promise = category ? Product.getByCategory(category) : Product.getAll();
-    Promise.then(({ data }) => setProducts(data));
+    if (user && user.isAdmin)
+      getProductsForAdmin();
+    else
+      getProductsForClient();
+    // eslint-disable-next-line
   }, [category]);
+
+  function getProductsForAdmin() {
+    const Promise = category ? Product.getAllByCategory(user.tokenId, category) : Product.getAll(user.tokenId);
+    Promise.then(({ data }) => setProducts(data));
+  }
+
+  function getProductsForClient() {
+    const Promise = category ? Product.getForSaleByCategory(category) : Product.getAllForSale();
+    Promise.then(({ data }) => setProducts(data));
+  }
 
   return (
     <>
