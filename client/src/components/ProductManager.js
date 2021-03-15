@@ -74,16 +74,19 @@ function ProductManager({ onClose, product }) {
 
   return (
     <>
-      <h2 className="text-center">Criação de Produto</h2>
+      <h2 className="text-center">{product ? 'Editar Produto' : 'Criar Produto'}</h2>
       <div className="row no-gutters">
-        <div className="col-12">
-          <ImageUploader
-            onChange={images => setImages(images)} withPreview={true}
-            withIcon={true} buttonText="Escolher imagens" label="Tamanho máximo: 5mb"
-            fileSizeError="Arquivo muito grande" fileTypeError="Tipo de arquivo não suportado"
-            imgExtension={[".jpg", ".png"]}
-          />
-        </div>
+        {
+          !product &&
+          <div className="col-12">
+            <ImageUploader
+              onChange={images => setImages(images)} withPreview={true}
+              withIcon={true} buttonText="Escolher imagens" label="Tamanho máximo: 5mb"
+              fileSizeError="Arquivo muito grande" fileTypeError="Tipo de arquivo não suportado"
+              imgExtension={[".jpg", ".png"]}
+            />
+          </div>
+        }
         <div className="col-lg-4 p-3">
           <div className="input-group">
             <div className="input-group-prepend">
@@ -142,7 +145,13 @@ function ProductManager({ onClose, product }) {
           <button className="btn btn-outline-dark btn-lg" onClick={() => onClose()}>Cancelar</button>
         </div>
         <div className="col-6 text-right">
-          <button className="btn btn-dark btn-lg" onClick={() => create()}>Criar Produto</button>
+          {
+            product
+              ?
+              <button className="btn btn-dark btn-lg">Editar Produto</button>
+              :
+              <button className="btn btn-dark btn-lg" onClick={() => create()}>Criar Produto</button>
+          }
         </div>
       </div>
     </>
