@@ -18,9 +18,9 @@ function CartGrid() {
   }
 
   function renderItems() {
-    return cart.map(item => item.sizes
-      .filter(size => size.buy)
-      .map(size => <CartItem key={size._id} product={item} size={size} onClick={onClickProduct} />)
+    return cart.map(item =>
+      item.sizes.filter(size => size.buy)
+        .map(size => <CartItem key={size._id} product={item} size={size} onClick={onClickProduct} />)
     );
   }
 

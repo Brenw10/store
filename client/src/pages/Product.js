@@ -23,8 +23,7 @@ function Product() {
   }, [id]);
 
   function renderSizes() {
-    const currentProduct = get(product._id) || product;
-    const values = currentProduct.sizes.filter(value => value.quantity);
+    const values = product.sizes.filter(value => value.quantity);
     return <ButtonSelector values={values} field='name' onSelect={value => setSelectedSize(value)} />
   }
 
@@ -35,8 +34,10 @@ function Product() {
   }
 
   function renderCartButtons() {
+    const currentProduct = get(product._id) || product;
+    const size = selectedSize && currentProduct.sizes.find(value => value._id === selectedSize._id);
     return (
-      selectedSize && selectedSize.buy
+      size && size.buy
         ?
         <button className='btn btn-danger mt-3 w-100' disabled={!selectedSize}
           onClick={() => setProductBuy(0)}>REMOVER NO CARRINHO</button>
