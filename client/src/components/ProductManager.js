@@ -10,14 +10,14 @@ import ImageUploader from "react-images-upload";
 import { TrashIcon, PlusCircleIcon } from './Icons';
 import { useUser } from '../contexts/User';
 
-function ProductManager({ onClose }) {
-  const [name, setName] = useState();
-  const [price, setPrice] = useState();
+function ProductManager({ onClose, product }) {
+  const [name, setName] = useState(product && product.name);
+  const [price, setPrice] = useState(product && product.price);
   const [images, setImages] = useState([]);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
-  const [description, setDescription] = useState();
-  const [sizes, setSizes] = useState([{}]);
+  const [description, setDescription] = useState(product && product.description);
+  const [sizes, setSizes] = useState(product ? product.sizes : [{}]);
   const { user } = useUser();
 
   useEffect(() => {
@@ -25,6 +25,12 @@ function ProductManager({ onClose }) {
       .then(({ data }) => ArrayUtils.getFlatten(data, 'categories'))
       .then(value => setCategories(value));
   }, []);
+
+  useEffect(() => {
+    if (!product || !categories.length) return;
+    const currentCategory = categories.find(value => value._id === product.category._id);
+    setCategory(currentCategory._id);
+  }, [product, categories]);
 
   function create() {
     const imagesPromise = images.map(value => FileUtils.toBase64(value));
@@ -83,7 +89,7 @@ function ProductManager({ onClose }) {
             <div className="input-group-prepend">
               <span className="input-group-text">Nome</span>
             </div>
-            <input type="text" className="form-control"
+            <input type="text" className="form-control" value={name}
               onChange={event => setName(event.target.value)} />
           </div>
         </div>
@@ -92,7 +98,7 @@ function ProductManager({ onClose }) {
             <div className="input-group-prepend">
               <span className="input-group-text">Preço</span>
             </div>
-            <input type="number" className="form-control" min="0"
+            <input type="number" className="form-control" min="0" value={price}
               onChange={event => setPrice(event.target.value)} />
           </div>
         </div>
@@ -129,7 +135,8 @@ function ProductManager({ onClose }) {
         </div>
         <div className="col-12 p-3">
           <div className="text-center mb-3"><h3>Descrição</h3></div>
-          <Editor placeholder="Detalhes do produto" onChange={value => setDescription(value())} />
+          <Editor placeholder="Detalhes do produto" defaultValue={description}
+            onChange={value => setDescription(value())} />
         </div>
         <div className="col-6">
           <button className="btn btn-outline-dark btn-lg" onClick={() => onClose()}>Cancelar</button>

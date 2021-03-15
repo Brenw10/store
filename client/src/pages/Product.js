@@ -9,12 +9,17 @@ import { ENDPOINT } from '../constants/Api';
 import SimpleImageSlider from "react-simple-image-slider";
 import ButtonSelector from '../components/ButtonSelector';
 import { useCart } from '../contexts/Cart';
+import { useUser } from '../contexts/User';
+import Modal from 'react-modal';
+import ProductManager from '../components/ProductManager';
 
 function Product() {
   const [product, setProduct] = useState();
   const [selectedSize, setSelectedSize] = useState();
+  const [modal, setModal] = useState(false);
   const { id } = useParams();
   const { get, add, setSize } = useCart();
+  const { user } = useUser();
 
   useEffect(() => {
     ProductService
@@ -47,6 +52,14 @@ function Product() {
     )
   }
 
+  function renderAdmin() {
+    if (!user || !user.isAdmin) return;
+    return (
+      <button type="button" onClick={() => setModal(true)}
+        className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>
+    );
+  }
+
   function renderProduct() {
     return (
       <div className="container">
@@ -77,9 +90,28 @@ function Product() {
       <Header />
       <Logo title={product ? product.name : ''} description="Detalhes do Produto" />
       {product && renderProduct()}
+      {renderAdmin()}
+      <Modal isOpen={modal} style={customStyles}>
+        <button type="button"
+          onClick={() => setModal(false)}
+          className="btn position-absolute close-button">x</button>
+        <ProductManager onClose={() => setModal(false)} product={product} />
+      </Modal>
       <Footer />
     </>
   );
 }
+
+const customStyles = {
+	content: {
+		width: '70%',
+		height: '70%',
+		left: 0,
+		right: 0,
+		top: 0,
+		bottom: 0,
+		margin: 'auto',
+	},
+};
 
 export default Product;
