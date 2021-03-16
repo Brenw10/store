@@ -20,6 +20,10 @@ function create(token, product) {
   return Endpoint.post('product', product, { headers: { Authorization: token } });
 }
 
+function update(token, _id, product) {
+  return Endpoint.put(`product/${_id}`, product, { headers: { Authorization: token } });
+}
+
 function getById(_id) {
   return Endpoint.get(`product/${_id}`);
 }
@@ -31,6 +35,7 @@ const service = {
   getById,
   getAll,
   getAllByCategory,
+  update,
 }
 
 export default service;

@@ -39,6 +39,11 @@ function ProductManager({ onClose, product }) {
       .then(() => onClose());
   }
 
+  function update() {
+    return Product.update(user.tokenId, product._id, { name, price, category, description, sizes })
+      .then(() => onClose());
+  }
+
   function onChangeSizes(field, value, index) {
     const items = [...sizes];
     const item = { ...sizes[index], [field]: value };
@@ -148,7 +153,7 @@ function ProductManager({ onClose, product }) {
           {
             product
               ?
-              <button className="btn btn-dark btn-lg">Editar Produto</button>
+              <button className="btn btn-dark btn-lg" onClick={() => update()}>Editar Produto</button>
               :
               <button className="btn btn-dark btn-lg" onClick={() => create()}>Criar Produto</button>
           }
