@@ -6,7 +6,7 @@ function create(product) {
 }
 
 function update(_id, product) {
-  return User.updateOne({ _id }, product);
+  return Product.updateOne({ _id }, product);
 }
 
 function getAllForSale() {

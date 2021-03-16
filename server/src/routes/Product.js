@@ -39,6 +39,7 @@ router.put('/:_id', Auth, Admin,
       description: Joi.string().required(),
       category: Joi.string().required(),
       sizes: Joi.array().min(1).required().items({
+        _id: Joi.string(),
         name: Joi.string().required(),
         quantity: Joi.number().integer().min(0).required(),
       }),
