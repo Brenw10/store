@@ -22,10 +22,20 @@ function Product() {
   const { user } = useUser();
 
   useEffect(() => {
+    loadProduct();
+    // eslint-disable-next-line
+  }, [id]);
+
+  function loadProduct() {
     ProductService
       .getById(id)
       .then(({ data }) => setProduct(data));
-  }, [id]);
+  }
+
+  function onClose() {
+    setModal(false);
+    loadProduct();
+  }
 
   function renderSizes() {
     const values = product.sizes.filter(value => value.quantity);
@@ -95,7 +105,7 @@ function Product() {
         <button type="button"
           onClick={() => setModal(false)}
           className="btn position-absolute close-button">x</button>
-        <ProductManager onClose={() => setModal(false)} product={product} />
+        <ProductManager onClose={onClose} product={product} />
       </Modal>
       <Footer />
     </>
@@ -103,15 +113,15 @@ function Product() {
 }
 
 const customStyles = {
-	content: {
-		width: '70%',
-		height: '70%',
-		left: 0,
-		right: 0,
-		top: 0,
-		bottom: 0,
-		margin: 'auto',
-	},
+  content: {
+    width: '70%',
+    height: '70%',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    margin: 'auto',
+  },
 };
 
 export default Product;
