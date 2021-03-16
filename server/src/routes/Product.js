@@ -28,6 +28,28 @@ router.post('/', Auth, Admin,
       .catch(err => res.status(400).send(err))
 );
 
+router.put('/:_id', Auth, Admin,
+  celebrate({
+    [Segments.PARAMS]: Joi.object({
+      _id: Joi.string().required(),
+    }),
+    [Segments.BODY]: Joi.object().keys({
+      name: Joi.string().required(),
+      price: Joi.number().required(),
+      description: Joi.string().required(),
+      category: Joi.string().required(),
+      sizes: Joi.array().min(1).required().items({
+        name: Joi.string().required(),
+        quantity: Joi.number().integer().min(0).required(),
+      }),
+    }),
+  }),
+  (req, res) =>
+    ProductEntity.update(req.params._id, req.body)
+      .then(result => res.send(result))
+      .catch(err => res.status(400).send(err))
+)
+
 router.get('/', Auth, Admin,
   (_, res) =>
     ProductEntity.getAll()

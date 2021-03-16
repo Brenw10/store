@@ -5,6 +5,10 @@ function create(product) {
   return Product.create(product);
 }
 
+function update(_id, product) {
+  return User.updateOne({ _id }, product);
+}
+
 function getAllForSale() {
   return Product.find({ "sizes.quantity": { $gt: 0 } });
 }
@@ -43,4 +47,5 @@ module.exports = {
   getById,
   getAll,
   getByCategory,
+  update,
 };
