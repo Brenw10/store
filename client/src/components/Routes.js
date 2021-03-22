@@ -11,10 +11,9 @@ import { useUser } from '../contexts/User';
 function Routes() {
 	const { user, setUser } = useUser();
 
-	function onSignIn({ tokenId }) {
-		User
-			.get(tokenId)
-			.then(({ data }) => setUser({ ...data, tokenId }));
+	async function onSignIn({ tokenId }) {
+		await User.create(tokenId);
+		User.get(tokenId).then(({ data }) => setUser({ ...data, tokenId }));
 	}
 
 	function renderLogin() {
