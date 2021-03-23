@@ -1,10 +1,10 @@
 const express = require('express');
-const User = require('../services/User');
+const UserEntity = require('../services/UserEntity');
 
 const router = express.Router();
 
 router.use(async function (_, res, next) {
-  const isAdmin = await User.isAdmin(res.locals.user.sub);
+  const isAdmin = await UserEntity.isAdmin(res.locals.user.sub);
   if (isAdmin) {
     next();
   } else {

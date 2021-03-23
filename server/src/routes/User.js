@@ -1,6 +1,6 @@
 const express = require('express');
 const Auth = require('../middleware/Auth');
-const User = require('../services/User');
+const UserEntity = require('../services/UserEntity');
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ router.use(Auth);
 
 router.post('/',
   (_, res) =>
-    User.create(
+    UserEntity.create(
       res.locals.user.sub,
       {
         ...res.locals.user,
@@ -22,7 +22,7 @@ router.post('/',
 
 router.get('/',
   (_, res) =>
-    User.getByAuthId(res.locals.user.sub)
+    UserEntity.getByAuthId(res.locals.user.sub)
       .then(result => res.send(result))
       .catch(err => res.status(400).send(err))
 )
