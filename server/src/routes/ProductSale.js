@@ -1,12 +1,12 @@
 const express = require('express');
 const { celebrate, Joi, errors, Segments } = require('celebrate');
-const ProductEntity = require('../services/ProductEntity');
+const ProductSaleEntity = require('../services/ProductSaleEntity');
 
 const router = express.Router();
 
 router.get('/',
   (_, res) =>
-    ProductEntity.getAllForSale()
+    ProductSaleEntity.getAllForSale()
       .then(result => res.send(result))
       .catch(err => res.status(400).send(err))
 );
@@ -18,7 +18,7 @@ router.get('/category/:category',
     }),
   }),
   (req, res) =>
-    ProductEntity.getForSaleByCategory(req.params.category)
+    ProductSaleEntity.getForSaleByCategory(req.params.category)
       .then(result => res.send(result))
       .catch(err => res.status(400).send(err))
 );
