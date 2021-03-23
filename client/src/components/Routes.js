@@ -3,24 +3,8 @@ import About from "../pages/About";
 import Cart from "../pages/Cart";
 import Store from "../pages/Store";
 import Product from "../pages/Product";
-import GoogleLogin from 'react-google-login';
-import { GOOGLE_AUTH } from '../constants/Api';
-import User from '../services/User';
-import { useUser } from '../contexts/User';
 
 function Routes() {
-	const { user, setUser } = useUser();
-
-	async function onSignIn({ tokenId }) {
-		await User.create(tokenId);
-		User.get(tokenId).then(({ data }) => setUser({ ...data, tokenId }));
-	}
-
-	function renderLogin() {
-		return <GoogleLogin className="position-fixed float-right-button" onSuccess={onSignIn}
-			clientId={GOOGLE_AUTH} buttonText="" cookiePolicy={'single_host_origin'} />;
-	}
-
 	return (
 		<>
 			<Router>
@@ -31,7 +15,6 @@ function Routes() {
 					<Route exact path="/product/:id" component={Product} />
 				</Switch>
 			</Router>
-			{!user && renderLogin()}
 		</>
 	);
 }
