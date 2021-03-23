@@ -9,13 +9,17 @@ function update(category) {
   return Category.updateOne({ _id: category._id }, category, { upsert: true });
 }
 
-async function getAllCategories() {
-  const categories = await Category.find({ categories: { $not: { $size: 0 } } }, { categories: 1, _id: 0 });
-  return categories.reduce((array, value) => array.concat(value.categories), []);
+function getParents() {
+  return Category.find({ categories: { $not: { $size: 0 } } });
 }
 
-async function getAll() {
-  const categories = await getAllCategories();
+async function getChildren() {
+  const categories = await getParents();
+  return categories.reduce((array, value) => [...array, ...value.categories], []);
+}
+
+async function getFirstParents() {
+  const categories = await getChildren();
   return Category.find({ _id: { $nin: categories } });
 }
 
@@ -39,6 +43,6 @@ async function getCategoryChildren(category) {
 module.exports = {
   create,
   update,
-  getAll,
+  getFirstParents,
   getCategoryChildren,
 };

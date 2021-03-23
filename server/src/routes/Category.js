@@ -34,7 +34,7 @@ router.put('/', Auth, Admin,
 
 router.get('/',
   (_, res) =>
-    CategoryEntity.getAll()
+    CategoryEntity.getFirstParents()
       .then(result => res.send(result))
       .catch(err => res.status(400).send(err))
 );
