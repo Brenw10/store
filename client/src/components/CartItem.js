@@ -26,17 +26,9 @@ function CartItem({ product, size, onClick }) {
           className="btn btn-dark btn-sm mr-2 mb-1">
           <PlusCircleIcon width={"20px"} />
         </button>
-        {
-          size.buy === 1
-            ?
-            <button className="btn btn-danger btn-sm mb-1" onClick={() => setSize(product, size, size.buy - 1)}>
-              <TrashIcon width={"20px"} />
-            </button>
-            :
-            <button className="btn btn-danger btn-sm mb-1" onClick={() => setSize(product, size, size.buy - 1)}>
-              <MinusCircleIcon width={"20px"} />
-            </button>
-        }
+        <button className="btn btn-danger btn-sm mb-1" onClick={() => setSize(product, size, size.buy - 1)}>
+          {size.buy === 1 ? <TrashIcon width={"20px"} /> : <MinusCircleIcon width={"20px"} />}
+        </button>
       </div>
     </div>
   );
