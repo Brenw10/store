@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Category from '../services/Category';
-
+// todo: improve code
 function CategorySelector(props) {
   const [category, setCategory] = useState();
   const [subCategory, setSubCategory] = useState();
@@ -43,23 +43,17 @@ function CategorySelector(props) {
     )
   }
 
-  return (
-    <>
-      {
-        categories.map((value, i) =>
-          <div key={i}>
-            <button onClick={() => onClickCategory(value._id)}
-              type="button"
-              className={`btn btn-light w-100 p-3 ${value._id === category && "active"}`}>
-              {value.name.toUpperCase()}
-            </button>
-            <div className={`card ${value.categories.length && value._id === category && 'm-2'}`}>
-              {value.categories && value._id === category && renderSubCategory(value.categories)}
-            </div>
-          </div>
-        )
-      }
-    </>
+  return categories.map((value, i) =>
+    <div key={i}>
+      <button onClick={() => onClickCategory(value._id)}
+        type="button"
+        className={`btn btn-light w-100 p-3 ${value._id === category && "active"}`}>
+        {value.name.toUpperCase()}
+      </button>
+      <div className={`card ${value.categories.length && value._id === category && 'm-2'}`}>
+        {value.categories && value._id === category && renderSubCategory(value.categories)}
+      </div>
+    </div>
   );
 }
 

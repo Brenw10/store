@@ -9,10 +9,7 @@ function ProductGrid({ category }) {
   const { user } = useUser();
 
   useEffect(() => {
-    if (user && user.isAdmin)
-      getProductsForAdmin();
-    else
-      getProductsForClient();
+    if (user?.isAdmin) getProductsForAdmin(); else getProductsForClient();
     // eslint-disable-next-line
   }, [category]);
 
