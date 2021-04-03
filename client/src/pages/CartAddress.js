@@ -5,13 +5,14 @@ import Header from '../components/Header';
 import Logo from '../components/Logo';
 import { useUser } from '../contexts/User';
 import { useCart } from '../contexts/Cart';
+import User from '../services/User';
 
 function CartAddress() {
   const { user } = useUser();
   const { getTotalBuying } = useCart();
 
   function onFinalize(address) {
-    console.log(address);
+    User.setAddress(user.tokenId, address);
   }
 
   return (
