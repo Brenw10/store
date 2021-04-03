@@ -7,7 +7,7 @@ import { useUser } from '../contexts/User';
 function LoginButton() {
   const { setUser } = useUser();
 
-  async function onSignIn({ tokenId }) {
+  function onSignIn({ tokenId }) {
     User.create(tokenId)
       .then(() => User.get(tokenId))
       .then(({ data }) => setUser({ ...data, tokenId }));

@@ -9,7 +9,7 @@ import FileUtils from '../services/FileUtils';
 import ImageUploader from "react-images-upload";
 import { TrashIcon, PlusCircleIcon } from './Icons';
 import { useUser } from '../contexts/User';
-// todo: improve
+// todo: improve code
 function ProductManager({ onClose, product }) {
   const [name, setName] = useState(product && product.name);
   const [price, setPrice] = useState(product && product.price);
