@@ -15,14 +15,14 @@ function Address({ button, disabled, onClick }) {
   return (
     <div className="row">
       <div className="form-group col-6">
-        <label>Estado:</label>
-        <input className="form-control" onChange={event => setState(event.target.value)}
-          placeholder="Digite o estado de entrega" value={state} />
-      </div>
-      <div className="form-group col-6">
         <label>Cidade:</label>
         <input className="form-control" onChange={event => setCity(event.target.value)}
           placeholder="Digite a cidade de entrega" value={city} />
+      </div>
+      <div className="form-group col-6">
+        <label>Estado:</label>
+        <input className="form-control" onChange={event => setState(event.target.value)}
+          placeholder="Digite o estado de entrega" value={state} />
       </div>
       <div className="form-group col-9">
         <label>Endereço:</label>
