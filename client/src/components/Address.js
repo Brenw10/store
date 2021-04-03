@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function Address({ button, disabled, onClick }) {
+function Address({ button, disabled, onClick, populate }) {
   const [state, setState] = useState('');
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
   const [district, setDistrict] = useState('');
   const [complement, setComplement] = useState('');
+
+  useEffect(() => {
+    if (populate) {
+      setState(populate?.state);
+      setCity(populate?.city);
+      setAddress(populate?.address);
+      setNumber(populate?.number);
+      setDistrict(populate?.district);
+      setComplement(populate?.complement);
+    }
+  }, [populate]);
 
   function isValid() {
     return state && city && address && number && district;
