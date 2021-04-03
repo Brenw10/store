@@ -7,11 +7,9 @@ export const CartContext = createContext();
 export default function CartProvider({ children }) {
   const [cart, dispatch] = useReducer(CartReducer, CartStorage.get());
 
-  const addItem = item => dispatch({ type: ACTIONS.ADD, payload: { item } });
-
   const clear = () => dispatch({ type: ACTIONS.CLEAR });
 
-  const removeItem = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
+  const addItem = item => dispatch({ type: ACTIONS.ADD, payload: { item } });
 
   const getItem = _id => cart.find(value => value._id === _id);
 
@@ -27,14 +25,13 @@ export default function CartProvider({ children }) {
     <CartContext.Provider value={
       {
         cart,
+        clear,
         addItem,
         getItem,
-        clear,
+        getBuying,
         setBuying,
         getTotalBuying,
         getTotalPrice,
-        getBuying,
-        removeItem,
       }
     }>{children}</CartContext.Provider>
   );
