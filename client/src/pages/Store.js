@@ -39,7 +39,7 @@ function Store() {
 				</div>
 			</div>
 			<Footer />
-			{ user && user.isAdmin && renderAdmin()}
+			{ user?.isAdmin && renderAdmin()}
 			<Modal isOpen={modal} style={customStyles}>
 				<button type="button"
 					onClick={() => setModal(false)}

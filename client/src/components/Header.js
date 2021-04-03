@@ -5,7 +5,7 @@ import { useUser } from '../contexts/User';
 import LoginButton from './LoginButton';
 
 function Header() {
-	const { getAllBuy } = useCart();
+	const { getTotalBuying } = useCart();
 	const { user } = useUser();
 
 	return (
@@ -14,7 +14,7 @@ function Header() {
 				Loja
 			</Link>
 			<Link to='/cart' className="text-decoration-none text-dark mx-3">
-				Carrinho ({getAllBuy()})
+				Carrinho ({getTotalBuying()})
 			</Link>
 			{!user && <LoginButton />}
 		</header>

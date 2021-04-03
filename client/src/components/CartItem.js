@@ -3,7 +3,7 @@ import { ENDPOINT } from '../constants/Api';
 import { useCart } from '../contexts/Cart';
 
 function CartItem({ product, size, onClick }) {
-  const { setSize } = useCart();
+  const { setBuying } = useCart();
 
   return (
     <div className="row no-gutters py-2">
@@ -18,16 +18,16 @@ function CartItem({ product, size, onClick }) {
         <p className="mb-1">Preço: R${Number(product.price).toLocaleString()} </p>
       </div>
       <div className="col-sm-2 p-2 text-center ">
-        <p className="mb-0">Qtd: {size.buy}</p>
+        <p className="mb-0">Qtd: {size.buying}</p>
         <p className="mb-0">Opção: {size.name}</p>
       </div>
       <div className="col-sm-4 p-2 text-right">
-        <button onClick={() => setSize(product, size, size.buy + 1)}
+        <button onClick={() => setBuying(product, size, size.buying + 1)}
           className="btn btn-dark btn-sm mr-2 mb-1">
           <PlusCircleIcon width={"20px"} />
         </button>
-        <button className="btn btn-danger btn-sm mb-1" onClick={() => setSize(product, size, size.buy - 1)}>
-          {size.buy === 1 ? <TrashIcon width={"20px"} /> : <MinusCircleIcon width={"20px"} />}
+        <button className="btn btn-danger btn-sm mb-1" onClick={() => setBuying(product, size, size.buying - 1)}>
+          {size.buying === 1 ? <TrashIcon width={"20px"} /> : <MinusCircleIcon width={"20px"} />}
         </button>
       </div>
     </div>

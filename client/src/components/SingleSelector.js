@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ButtonSelector({ values, field, onSelect }) {
+function SingleSelector({ values, field, onSelect }) {
   const [selected, setSelected] = useState();
 
   function onClick(value) {
@@ -9,12 +9,11 @@ function ButtonSelector({ values, field, onSelect }) {
   }
 
   return values.map((value, i) =>
-    <button key={i}
-      className={`btn btn-outline-dark m-2 ${value === selected && 'active'}`}
-      onClick={() => onClick(value)}>
+    <button key={i} onClick={() => onClick(value)}
+      className={`btn btn-outline-dark m-2 ${value === selected && 'active'}`}>
       {value[field]}
     </button>
   );
 }
 
-export default ButtonSelector;
+export default SingleSelector;

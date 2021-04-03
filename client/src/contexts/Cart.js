@@ -7,34 +7,34 @@ export const CartContext = createContext();
 export default function CartProvider({ children }) {
   const [cart, dispatch] = useReducer(CartReducer, CartStorage.get());
 
-  const add = item => dispatch({ type: ACTIONS.ADD, payload: { item } });
+  const addItem = item => dispatch({ type: ACTIONS.ADD, payload: { item } });
 
   const clear = () => dispatch({ type: ACTIONS.CLEAR });
 
-  const setSize = (item, size, buy) => dispatch({ type: ACTIONS.SET_SIZE, payload: { item, size: { ...size, buy } } });
+  const removeItem = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
 
-  const remove = item => dispatch({ type: ACTIONS.REMOVE, payload: { item } });
+  const getItem = _id => cart.find(value => value._id === _id);
 
-  const get = _id => cart.find(value => value._id === _id);
+  const getBuying = _id => getItem(_id).sizes.reduce((sum, value) => sum + ~~value.buying, 0);
 
-  const getBuy = _id => get(_id).sizes.reduce((sum, value) => sum + ~~value.buy, 0);
+  const setBuying = (item, size, buying) => dispatch({ type: ACTIONS.SET_BUYING, payload: { item, size, buying } });
 
-  const getAllBuy = () => cart.reduce((sum, value) => sum + getBuy(value._id), 0);
+  const getTotalBuying = () => cart.reduce((sum, value) => sum + getBuying(value._id), 0);
 
-  const getTotal = () => cart.reduce((sum, value) => sum + getBuy(value._id) * value.price, 0);
+  const getTotalPrice = () => cart.reduce((sum, value) => sum + getBuying(value._id) * value.price, 0);
 
   return (
     <CartContext.Provider value={
       {
         cart,
-        add,
-        get,
+        addItem,
+        getItem,
         clear,
-        setSize,
-        getAllBuy,
-        getTotal,
-        getBuy,
-        remove,
+        setBuying,
+        getTotalBuying,
+        getTotalPrice,
+        getBuying,
+        removeItem,
       }
     }>{children}</CartContext.Provider>
   );
