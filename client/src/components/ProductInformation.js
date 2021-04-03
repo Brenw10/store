@@ -21,7 +21,7 @@ function ProductInformation({ product }) {
     return size?.buying > 0
       ?
       <button className='btn btn-danger mt-3 w-100' disabled={!selectedSize}
-        onClick={() => setProductBuying(0)}>REMOVER NO CARRINHO</button>
+        onClick={() => setProductBuying(0)}>REMOVER DO CARRINHO</button>
       :
       <button className='btn btn-dark mt-3 w-100' disabled={!selectedSize}
         onClick={() => setProductBuying(1)}>ADICIONAR NO CARRINHO</button>
