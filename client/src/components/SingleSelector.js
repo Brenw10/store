@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function SingleSelector({ values, field, onSelect }) {
-  const [selected, setSelected] = useState();
-
-  function onClick(value) {
-    setSelected(value);
-    onSelect(value);
-  }
-
+function SingleSelector({ values, display, selected, onSelect }) {
   return values.map((value, i) =>
-    <button key={i} onClick={() => onClick(value)}
+    <button key={i} onClick={() => onSelect(value)}
       className={`btn btn-outline-dark m-2 ${value === selected && 'active'}`}>
-      {value[field]}
+      {value[display]}
     </button>
   );
 }

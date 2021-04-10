@@ -15,22 +15,21 @@ function ProductInformation({ product }) {
     setSelectedSize();
   }
 
-  function renderCartButtons() { // todo: improve code
+  function renderCartButtons() {
     const currentProduct = getItem(product._id) || product;
     const size = currentProduct.sizes.find(value => value._id === selectedSize?._id);
-    return size?.buying > 0
-      ?
-      <button className='btn btn-danger mt-3 w-100' disabled={!selectedSize}
-        onClick={() => setProductBuying(0)}>REMOVER DO CARRINHO</button>
-      :
-      <button className='btn btn-dark mt-3 w-100' disabled={!selectedSize}
-        onClick={() => setProductBuying(1)}>ADICIONAR NO CARRINHO</button>
-
+    const isBuying = size?.buying > 0;
+    return (
+      <button className={`btn btn-${isBuying ? 'danger' : 'dark'} mt-3 w-100`} disabled={!selectedSize}
+        onClick={() => setProductBuying(Number(!isBuying))}>
+        {isBuying ? 'REMOVER DO CARRINHO' : 'ADICIONAR NO CARRINHO'}
+      </button>
+    );
   }
 
   function renderSizes() {
     const values = product.sizes.filter(value => value.quantity);
-    return <SingleSelector values={values} field='name' onSelect={value => setSelectedSize(value)} />
+    return <SingleSelector values={values} display='name' selected={selectedSize} onSelect={value => setSelectedSize(value)} />
   }
 
   return (
