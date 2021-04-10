@@ -1,6 +1,7 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductGrid from "../components/ProductGrid";
+import ProductGridAdmin from "../components/ProductGridAdmin";
 import CategorySelector from "../components/CategorySelector";
 import ProductManager from "../components/ProductManager";
 import Logo from "../components/Logo";
@@ -16,8 +17,16 @@ function Store() {
 
 	function renderAdmin() {
 		return (
-			<button type="button" onClick={() => setModal(true)}
-				className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>
+			<>
+				<button type="button" onClick={() => setModal(true)}
+					className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>
+				<Modal isOpen={modal} style={customStyles}>
+					<button type="button"
+						onClick={() => setModal(false)}
+						className="btn position-absolute close-button">x</button>
+					<ProductManager onClose={() => setModal(false)} />
+				</Modal>
+			</>
 		);
 	}
 
@@ -35,17 +44,11 @@ function Store() {
 					<CategorySelector setCategory={setCategory} />
 				</div>
 				<div className="col-xl-6 col-lg-8">
-					<ProductGrid category={category} />
+					{user?.isAdmin ? <ProductGridAdmin category={category} /> : <ProductGrid category={category} />}
 				</div>
 			</div>
 			<Footer />
-			{ user?.isAdmin && renderAdmin()}
-			<Modal isOpen={modal} style={customStyles}>
-				<button type="button"
-					onClick={() => setModal(false)}
-					className="btn position-absolute close-button">x</button>
-				<ProductManager onClose={() => setModal(false)} />
-			</Modal>
+			{user?.isAdmin && renderAdmin()}
 		</>
 	);
 }
