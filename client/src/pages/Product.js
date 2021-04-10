@@ -32,8 +32,17 @@ function Product() {
   }
 
   function renderAdmin() {
-    return <button type="button" onClick={() => setModal(true)}
-      className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>;
+    return (
+      <>
+        <button type="button" onClick={() => setModal(true)}
+          className="btn btn-danger rounded-circle position-fixed float-right-button m-3">+</button>
+        <Modal isOpen={modal} style={customStyles}>
+          <button type="button" onClick={() => setModal(false)}
+            className="btn position-absolute close-button">x</button>
+          <ProductManager onClose={onClose} product={product} />
+        </Modal>
+      </>
+    );
   }
 
   return (
@@ -41,13 +50,8 @@ function Product() {
       <Header />
       <Logo title={product?.name} description="Detalhes do Produto" />
       {product && <ProductInformation product={product} />}
-      {user?.isAdmin && renderAdmin()}
-      <Modal isOpen={modal} style={customStyles}>
-        <button type="button" onClick={() => setModal(false)}
-          className="btn position-absolute close-button">x</button>
-        <ProductManager onClose={onClose} product={product} />
-      </Modal>
       <Footer />
+      {user?.isAdmin && renderAdmin()}
     </>
   );
 }
