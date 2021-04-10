@@ -3,27 +3,27 @@ import LoadingBar from 'react-top-loading-bar';
 import Endpoint from '../core/Endpoint';
 
 function Loader() {
-  const loaderRef = useRef();
-  const count = useRef(0);
+  let count = 0;
+  const loader = useRef();
 
   useEffect(() => {
     interceptor();
     // eslint-disable-next-line
   }, []);
 
-  function setLoader() {
-    if (count.current >= 1) {
-      loaderRef.current.continuousStart();
+  function showLoader() {
+    if (count >= 1) {
+      loader.current.continuousStart();
     } else {
-      loaderRef.current.complete();
+      loader.current.complete();
     }
   }
 
   function interceptor() {
     Endpoint.interceptors.request.use(
       results => {
-        count.current++;
-        setLoader();
+        count++;
+        showLoader();
         return results;
       },
       error => Promise.reject(error),
@@ -31,20 +31,20 @@ function Loader() {
 
     Endpoint.interceptors.response.use(
       results => {
-        count.current--;
-        setLoader();
+        count--;
+        showLoader();
         return results;
       },
       error => {
-        count.current--;
-        setLoader();
+        count--;
+        showLoader();
         return Promise.reject(error);
       }
     );
   }
 
   return (
-    <LoadingBar color='#d12c4e' ref={loaderRef} />
+    <LoadingBar color='#d12c4e' ref={loader} />
   );
 }
 

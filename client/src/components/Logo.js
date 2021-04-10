@@ -1,3 +1,5 @@
+import React from 'react';
+
 function StoreLogo({ title, description }) {
   return (
     <div className="text-center mt-5">

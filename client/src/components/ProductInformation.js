@@ -15,7 +15,7 @@ function ProductInformation({ product }) {
     setSelectedSize();
   }
 
-  function renderCartButtons() {
+  function renderCartButtons() { // todo: improve code
     const currentProduct = getItem(product._id) || product;
     const size = currentProduct.sizes.find(value => value._id === selectedSize?._id);
     return size?.buying > 0

@@ -8,19 +8,13 @@ function CartGrid() {
   const { user } = useUser();
   const history = useHistory();
 
-  function onClickProduct({ _id }) {
-    history.push('product/' + _id);
-  }
-
-  function onFinalize() {
-    history.push('cart-address');
-  }
-
   function renderItems() {
     return cart.map(item =>
-      item.sizes
-        .filter(size => size.buying)
-        .map(size => <CartItem key={size._id} product={item} size={size} onClick={onClickProduct} />)
+      item.sizes.filter(size => size.buying).map(size =>
+        <CartItem key={size._id} product={item} size={size}
+          onClick={({ _id }) => history.push('product/' + _id)}
+        />
+      )
     );
   }
 
@@ -39,7 +33,9 @@ function CartGrid() {
             <h3 className="m-0 txt-right">R$ {Number(getTotalPrice()).toLocaleString()}</h3>
             <hr className="my-4" />
             <div className="text-center">
-              <button type="button" disabled={!user} className="btn btn-dark" onClick={onFinalize}>FINALIZAR COMPRA</button>
+              <button type="button" disabled={!user} className="btn btn-dark" onClick={() => history.push('cart-address')}>
+                FINALIZAR COMPRA
+              </button>
               <button type="button" className="btn btn-outline btn-sm" onClick={() => clear()}>LIMPAR</button>
               {!user && <p className="m-1 mt-3 text-muted">Faça Login antes para continuar</p>}
             </div>
