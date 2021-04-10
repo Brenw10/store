@@ -1,19 +1,26 @@
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductGrid from "../components/ProductGrid";
 import ProductGridAdmin from "../components/ProductGridAdmin";
-import CategorySelector from "../components/CategorySelector";
 import ProductManager from "../components/ProductManager";
 import Logo from "../components/Logo";
-import '../styles/store.css';
-import { useState } from "react";
 import Modal from 'react-modal';
 import { useUser } from '../contexts/User';
+import TreeSelector from "../components/TreeSelector";
+import Category from '../services/Category';
+import '../styles/store.css';
 
 function Store() {
+	const [categories, setCategories] = useState();
 	const [category, setCategory] = useState();
 	const [modal, setModal] = useState();
 	const { user } = useUser();
+
+	useEffect(() => {
+		Category.getAll()
+			.then(({ data }) => setCategories(data));
+	}, []);
 
 	function renderAdmin() {
 		return (
@@ -37,11 +44,17 @@ function Store() {
 			<div className="row no-gutters">
 				<div className="col-lg-3 justify-content-center d-none d-lg-flex">
 					<div className="category-container-desktop shadow-sm">
-						<CategorySelector setCategory={setCategory} />
+						{
+							categories &&
+							<TreeSelector onSelect={setCategory} items={categories} display='name' children='categories' />
+						}
 					</div>
 				</div>
 				<div className="col-lg-3 d-lg-none shadow-sm">
-					<CategorySelector setCategory={setCategory} />
+					{
+						categories &&
+						<TreeSelector onSelect={setCategory} items={categories} display='name' children='categories' />
+					}
 				</div>
 				<div className="col-xl-6 col-lg-8">
 					{user?.isAdmin ? <ProductGridAdmin category={category} /> : <ProductGrid category={category} />}

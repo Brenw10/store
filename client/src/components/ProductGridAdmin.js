@@ -9,7 +9,7 @@ function ProductGrid({ category }) {
   const { user } = useUser();
 
   useEffect(() => {
-    const Promise = category ? Product.getAllByCategory(user.tokenId, category) : Product.getAll(user.tokenId);
+    const Promise = category ? Product.getAllByCategory(user.tokenId, category._id) : Product.getAll(user.tokenId);
     Promise.then(({ data }) => setProducts(data));
   }, [category, user]);
 

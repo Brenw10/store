@@ -7,7 +7,7 @@ function ProductGrid({ category }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const Promise = category ? Product.getForSaleByCategory(category) : Product.getAllForSale();
+    const Promise = category ? Product.getForSaleByCategory(category._id) : Product.getAllForSale();
     Promise.then(({ data }) => setProducts(data));
   }, [category]);
 
