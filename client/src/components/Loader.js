@@ -11,7 +11,7 @@ function Loader() {
     // eslint-disable-next-line
   }, []);
 
-  function showLoader() {
+  function displayLoader() {
     if (count >= 1) {
       loader.current.continuousStart();
     } else {
@@ -23,7 +23,7 @@ function Loader() {
     Endpoint.interceptors.request.use(
       results => {
         count++;
-        showLoader();
+        displayLoader();
         return results;
       },
       error => Promise.reject(error),
@@ -32,12 +32,12 @@ function Loader() {
     Endpoint.interceptors.response.use(
       results => {
         count--;
-        showLoader();
+        displayLoader();
         return results;
       },
       error => {
         count--;
-        showLoader();
+        displayLoader();
         return Promise.reject(error);
       }
     );
