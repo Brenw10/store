@@ -16,7 +16,7 @@ function CartItem({ product, size, onClick }) {
       <div className="col-sm-4 p-2 pointer" onClick={() => onClick(product, size)}>
         <h5 className="mb-1">{product.name} - {size.name}</h5>
         <p className="mb-1">Preço: R${Number(product.price).toLocaleString()}</p>
-        {size.buying > size.quantity && <small class="text-danger">Quantidade indisponível</small>}
+        {size.buying > size.quantity && <small className="text-danger">Quantidade indisponível</small>}
       </div>
       <div className="col-sm-2 p-2 text-center ">
         <p className="mb-0">Qtd: {size.buying}</p>
