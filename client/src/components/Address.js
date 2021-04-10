@@ -26,27 +26,27 @@ function Address({ button, disabled, onClick, populate }) {
   return (
     <div className="row">
       <div className="form-group col-6">
-        <label>Cidade:</label>
+        <label>Cidade*:</label>
         <input className="form-control" onChange={event => setCity(event.target.value)}
           placeholder="Digite a cidade de entrega" value={city} />
       </div>
       <div className="form-group col-6">
-        <label>Estado:</label>
+        <label>Estado*:</label>
         <input className="form-control" onChange={event => setState(event.target.value)}
           placeholder="Digite o estado de entrega" value={state} />
       </div>
       <div className="form-group col-9">
-        <label>Endereço:</label>
+        <label>Endereço*:</label>
         <input className="form-control" onChange={event => setAddress(event.target.value)}
           placeholder="Digite o endereço de entrega" value={address} />
       </div>
       <div className="form-group col-3">
-        <label>Número:</label>
+        <label>Número*:</label>
         <input className="form-control" onChange={event => setNumber(event.target.value)}
           placeholder="Número de entrega" value={number} />
       </div>
       <div className="form-group col-6">
-        <label>Bairro:</label>
+        <label>Bairro*:</label>
         <input className="form-control" onChange={event => setDistrict(event.target.value)}
           placeholder="Digite o bairro da entrega" value={district} />
       </div>
